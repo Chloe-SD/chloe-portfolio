@@ -16,18 +16,18 @@ import MysqlOriginal from "react-devicons/mysql/original";
 
 // Define the skills array with name and category
 const skills = [
-  { name: 'React', category: 'web' },
-  { name: 'Python', category: 'backend' },
-  { name: 'TailWind', category: 'web' },
-  { name: 'Node.js', category: 'backend' },
-  { name: 'CSS 3', category: 'web' },
-  { name: 'HTML 5', category: 'web' },
-  { name: 'Java', category: 'backend' },
-  { name: 'C Sharp', category: 'backend' },
-  { name: 'TypeScript', category: 'backend' },
-  { name: 'JavaScript', category: 'backend' },
-  { name: 'Firebase', category: 'backend' },
-  { name: 'MySQL', category: 'backend' },
+  { name: 'React', category: 'Web' },
+  { name: 'Python', category: 'Backend' },
+  { name: 'TailWind', category: 'Web' },
+  { name: 'Node.js', category: 'Backend' },
+  { name: 'CSS 3', category: 'Web' },
+  { name: 'HTML 5', category: 'Web' },
+  { name: 'Java', category: 'Backend' },
+  { name: 'C Sharp', category: 'Backend' },
+  { name: 'TypeScript', category: 'Backend' },
+  { name: 'JavaScript', category: 'Backend' },
+  { name: 'Firebase', category: 'database' },
+  { name: 'MySQL', category: 'database' },
   // Add more skills as needed
 ];
 
@@ -80,7 +80,7 @@ const SkillCard = ({ skill, isSelected, position, velocity }) => {
       pos.y += vel.y;
 
       // Apply the new position and scale (if selected)
-      card.style.transform = `translate(${pos.x}px, ${pos.y}px) scale(${isSelected ? 1.2 : 1})`;
+      card.style.transform = `translate(${pos.x}px, ${pos.y}px) scale(${isSelected ? 1.2 : 0.7})`;
 
       animationFrameId = requestAnimationFrame(animate);
     };
@@ -103,7 +103,7 @@ const SkillCard = ({ skill, isSelected, position, velocity }) => {
       }`}
       initial={{ scale: 1 }}
     >
-      <div className="flex text-8xl text-center items-center">{skillIcons[skill.name]}</div>
+      <div className="text-8xl">{skillIcons[skill.name]}</div>
       <h3 className="text-lg font-bold">{skill.name}</h3>
       <p className="text-sm opacity-75">{skill.category}</p>
     </motion.div>
@@ -150,7 +150,8 @@ const FloatingSkills = () => {
   };
 
   return (
-    <div ref={containerRef} className="relative w-full h-screen overflow-hidden bg-gray-100">
+    <div ref={containerRef} className="relative w-5/6 h-screen overflow-hidden bg-slate-900
+      rounded-lg border-2 border-purple-300">
       {/* Category selection buttons */}
       <div className="absolute top-4 left-4 space-x-2 z-20">
         {categories.map(category => (

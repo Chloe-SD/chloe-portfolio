@@ -7,7 +7,7 @@ export default function Home() {
   return (
     <main>
       Chloe Nibali - Developer
-      <div>
+      <div className="flex justify-center max-h-2/3">
         <FloatingSkills/>
       </div>
 
