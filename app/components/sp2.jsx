@@ -13,6 +13,22 @@ import Css3Original from "react-devicons/css3/original";
 import Html5Original from "react-devicons/html5/original";
 import MysqlOriginal from "react-devicons/mysql/original";
 
+
+//===============================================================================
+//===============================================================================
+/**
+ * THINGS TO DO ON THIS COMPONENT
+ * - Alphabatize the skills
+ * - Add more (MySql etc)
+ * - Better differentiate the highlighted skills
+ * - Center the selected grid????
+ * 
+ * -- comments updated 2024-09-02 -CN
+ */
+//===============================================================================
+//===============================================================================
+
+
 // Define the skills array with name and category
 const skills = [
   { name: 'React', category: 'Frontend' },
@@ -151,7 +167,7 @@ const FloatingSkills = () => {
     const selectedSkills = selectedCategory === null ? [] : skills.filter(skill => skill.category === selectedCategory);
     
     return (
-        <div className="flex flex-col h-full">
+        <div className="flex flex-col h-full w-full">
         <div className="flex-none p-4 bg-slate-900 rounded-t-lg border-t-2 border-x-2 border-purple-300">
             
             {/* RADIO BUTTONS FOR SELECTING CATEGORY */}
