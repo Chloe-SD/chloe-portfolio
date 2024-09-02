@@ -30,7 +30,7 @@ export default function Home() {
 
         {/* Skills Section / TECH STACK */}
         <section id="skills" className="h-screen flex items-center justify-center p-4 md:p-6">
-          <div className='h-full w-full md:h-3/4 md:w-3/4'>
+          <div className='h-5/6 w-full md:h-3/4 md:w-3/4'>
             <p className="text-center mb-4 text-xl md:text-2xl">My Skills</p>
             <FloatingSkills/>
           </div>

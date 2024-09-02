@@ -15,18 +15,18 @@ import MysqlOriginal from "react-devicons/mysql/original";
 
 // Skills array (unchanged)
 const skills = [
-  { name: 'React', category: 'Frontend' },
-  { name: 'Python', category: 'Backend' },
-  { name: 'TailWind', category: 'Frontend' },
-  { name: 'Node.js', category: 'Backend' },
-  { name: 'CSS 3', category: 'Frontend' },
-  { name: 'HTML 5', category: 'Frontend' },
-  { name: 'Java', category: 'Backend' },
-  { name: 'C Sharp', category: 'Backend' },
-  { name: 'TypeScript', category: 'Backend' },
-  { name: 'JavaScript', category: 'Backend' },
-  { name: 'Firebase', category: 'Database' },
-  { name: 'MySQL', category: 'Database' },
+    { name: 'C Sharp', category: 'Backend' },
+    { name: 'CSS 3', category: 'Frontend' },
+    { name: 'Firebase', category: 'Database' },
+    { name: 'HTML 5', category: 'Frontend' },
+    { name: 'Java', category: 'Backend' },
+    { name: 'JavaScript', category: 'Backend' },
+    { name: 'MySQL', category: 'Database' },
+    { name: 'Node.js', category: 'Backend' },
+    { name: 'Python', category: 'Backend' },
+    { name: 'React', category: 'Frontend' },
+    { name: 'TailWind', category: 'Frontend' },
+    { name: 'TypeScript', category: 'Backend' },
 ];
 
 // Skill icons (unchanged)
@@ -49,30 +49,34 @@ const skillIcons = {
 const categories = [...new Set(skills.map(skill => skill.category))];
 
 // Updated SkillCard component
-const SkillCard = ({ skill, isSelected, position, index, totalSelected }) => {
-    const [windowWidth, setWindowWidth] = useState(typeof window !== 'undefined' ? window.innerWidth : 0);
+const SkillCard = ({ skill, isSelected, position, index, totalSelected, containerSize, windowWidth }) => {
+    const isMobile = windowWidth <= 640; // sm breakpoint
+    const isTablet = windowWidth > 640 && windowWidth <= 1024; // md to lg breakpoint
+    //const isDesktop = windowWidth > 1024; // larger than lg
 
-    useEffect(() => {
-        const handleResize = () => setWindowWidth(window.innerWidth);
-        window.addEventListener('resize', handleResize);
-        return () => window.removeEventListener('resize', handleResize);
-    }, []);
+    const cardSize = isMobile ? 112 : (isTablet ? 144 : 192); // in pixels, matching the Tailwind classes
+    const gridColumns = isMobile ? 2 : (isTablet ? 3 : Math.ceil(Math.sqrt(totalSelected)));
+    const gridRows = Math.ceil(totalSelected / gridColumns);
 
-    const isMobile = windowWidth <= 768;
-    const gridColumns = isMobile ? 2 : Math.ceil(Math.sqrt(totalSelected));
-    const row = Math.floor(index / gridColumns);
-    const col = index % gridColumns;
+    let row, col;
+    if (isSelected) {
+        row = Math.floor(index / gridColumns);
+        col = index % gridColumns;
+    }
 
-    const offsetX = isMobile ? 20 : 50;
-    const offsetY = isMobile ? 20 : 50;
+    const gridWidth = cardSize * gridColumns;
+    const gridHeight = cardSize * gridRows;
 
-    const cardSize = isMobile ? 'w-24 h-24' : 'w-36 h-40';
-    const iconSize = isMobile ? 'text-4xl' : 'text-8xl';
-    const textSize = isMobile ? 'text-xs' : 'text-lg';
+    const offsetX = isSelected ? (containerSize.width - gridWidth) / 2 : 0;
+    const offsetY = isSelected ? (containerSize.height - gridHeight) / 2 : 0;
+
+    const cardSizeClass = isMobile ? 'w-28 h-28' : (isTablet ? 'w-36 h-36' : 'w-48 h-48');
+    const iconSize = isMobile ? 'text-4xl' : (isTablet ? 'text-5xl' : 'text-7xl');
+    const textSize = isMobile ? 'text-xs' : (isTablet ? 'text-sm' : 'text-base');
 
     return (
         <motion.div
-            className={`absolute ${cardSize} p-2 rounded-lg shadow-md flex flex-col items-center justify-center ${
+            className={`absolute ${cardSizeClass} p-2 rounded-lg shadow-md flex flex-col items-center justify-center ${
                 isSelected 
                     ? 'bg-slate-700 text-white z-10 border-2 border-fuchsia-200' 
                     : 'bg-gray-500 bg-opacity-50 text-white'
@@ -82,16 +86,16 @@ const SkillCard = ({ skill, isSelected, position, index, totalSelected }) => {
                 ? { 
                     scale: 1, 
                     opacity: 1, 
-                    x: `calc(${col * 110}% + ${offsetX}px)`,
-                    y: `calc(${row * 110}% + ${offsetY}px)`,
+                    x: offsetX + (col * 1.07) * cardSize,
+                    y: offsetY + (row * 1.07) * cardSize,
                 }
                 : { scale: 0.7, x: position.x, y: position.y }
             }
             transition={{ type: 'spring', stiffness: 300, damping: 20 }}
         >
-            <div className={`${iconSize} mb-1`}>{skillIcons[skill.name]}</div>
+            <div className={`${iconSize} mb-2`}>{skillIcons[skill.name]}</div>
             <h3 className={`${textSize} font-bold text-center`}>{skill.name}</h3>
-            {/* <p className={`${textSize} opacity-75 text-center`}>{skill.category}</p> */}
+            <p className={`${textSize} opacity-75 text-center`}>{skill.category}</p>
         </motion.div>
     );
 };
@@ -101,11 +105,15 @@ const FloatingSkills = () => {
     const [selectedCategory, setSelectedCategory] = useState(null);
     const [cardStates, setCardStates] = useState([]);
     const containerRef = useRef(null);
+    const [containerSize, setContainerSize] = useState({ width: 0, height: 0 });
+    const [windowWidth, setWindowWidth] = useState(typeof window !== 'undefined' ? window.innerWidth : 0);
 
     useEffect(() => {
-        const updateCardStates = () => {
+        const updateSize = () => {
+            setWindowWidth(window.innerWidth);
             if (containerRef.current) {
                 const { width, height } = containerRef.current.getBoundingClientRect();
+                setContainerSize({ width, height });
                 setCardStates(skills.map(() => ({
                     position: {
                         x: Math.random() * (width - 100),
@@ -119,11 +127,11 @@ const FloatingSkills = () => {
             }
         };
 
-        updateCardStates();
-        window.addEventListener('resize', updateCardStates);
+        updateSize();
+        window.addEventListener('resize', updateSize);
 
         return () => {
-            window.removeEventListener('resize', updateCardStates);
+            window.removeEventListener('resize', updateSize);
         };
     }, []);
 
@@ -140,10 +148,10 @@ const FloatingSkills = () => {
                 let newVelocityX = state.velocity.x;
                 let newVelocityY = state.velocity.y;
 
-                if (newX <= 0 || newX >= containerRef.current.clientWidth - 100) {
+                if (newX <= 0 || newX >= containerSize.width - 100) {
                     newVelocityX *= -1;
                 }
-                if (newY <= 0 || newY >= containerRef.current.clientHeight - 100) {
+                if (newY <= 0 || newY >= containerSize.height - 100) {
                     newVelocityY *= -1;
                 }
 
@@ -158,7 +166,7 @@ const FloatingSkills = () => {
     useEffect(() => {
         const intervalId = setInterval(animateFloatingCards, 50);
         return () => clearInterval(intervalId);
-    }, []);
+    }, [containerSize]);
     
     const selectedSkills = selectedCategory === null ? [] : skills.filter(skill => skill.category === selectedCategory);
     
@@ -171,7 +179,7 @@ const FloatingSkills = () => {
                             key={category}
                             onClick={() => handleCategorySelect(category)}
                             className={`px-2 py-1 text-sm md:px-4 md:py-2 md:text-base rounded transition-colors
-                                ${selectedCategory === category ? 'bg-blue-500 text-white' : 'bg-gray-300 text-gray-700'}`}
+                                ${selectedCategory === category ? 'bg-fuchsia-700 text-white' : 'bg-fuchsia-200 text-gray-700'}`}
                         >
                             {category}
                         </button>
@@ -193,6 +201,8 @@ const FloatingSkills = () => {
                             position={cardStates[index]?.position || { x: 0, y: 0 }}
                             index={selectedSkills.findIndex(s => s.name === skill.name)}
                             totalSelected={selectedSkills.length}
+                            containerSize={containerSize}
+                            windowWidth={windowWidth}
                         />
                     ))}
                 </AnimatePresence>
