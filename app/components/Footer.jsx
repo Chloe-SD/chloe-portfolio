@@ -1,22 +1,16 @@
-import React from "react";
-import { Github, Linkedin, Mail } from 'lucide-react';
 
+import Media from './Media';
 
 const Footer = () => {
     return (
-        <footer className="p-6 flex justify-center space-x-4">
-        <a href="https://github.com/Chloe-SD" className="hover:text-pink-300 transition-colors"
-        target="_blank">
-          <Github size={24} />
-        </a>
-        <a href="https://linkedin.com/in/chloe-nibali" className="hover:text-pink-300 transition-colors"
-        target="_blank">
-          <Linkedin size={24} />
-        </a>
-        <a href="mailto:chloe.nibali@edu.sait.ca" className="hover:text-pink-300 transition-colors">
-          <Mail size={24} />
-        </a>
-      </footer>
+        <footer className="p-6 flex justify-between space-x-4 w-3/4 self-center">
+            <div>
+                <p>&copy; Chloe Nibali 2024</p>
+            </div>
+            <Media/>
+            
+            
+        </footer>
     );
 };
 

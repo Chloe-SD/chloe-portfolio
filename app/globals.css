@@ -2,6 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
+
 :root {
   --foreground-rgb: 0, 0, 0;
   --background-start-rgb: 214, 219, 220;
@@ -16,14 +17,15 @@
   }
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+  background-image: url("../public/cmore3.jpg");
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
 }
 
 @layer utilities {
@@ -31,3 +33,5 @@ body {
     text-wrap: balance;
   }
 }
+
+

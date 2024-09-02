@@ -77,7 +77,7 @@ const SkillCard = ({ skill, isSelected, position, index, totalSelected }) => {
         <motion.div
             className={`absolute p-6 rounded-lg shadow-md ${
                 isSelected 
-                    ? 'bg-gray-500 text-white z-10' 
+                    ? 'bg-slate-700 text-white z-10 border-2 border-fuchsia-200' 
                     : 'bg-gray-500 bg-opacity-50 text-white'
             }`}
             initial={isSelected ? { scale: 0.7, opacity: 0 } : { scale: 0.7, x: position.x, y: position.y }}
@@ -168,7 +168,7 @@ const FloatingSkills = () => {
     
     return (
         <div className="flex flex-col h-full w-full">
-        <div className="flex-none p-4 bg-slate-900 rounded-t-lg border-t-2 border-x-2 border-purple-300">
+        <div className="flex-none p-4 bg-slate-900 bg-opacity-50 rounded-t-lg border-t-2 border-x-2 border-fuchsia-200">
             
             {/* RADIO BUTTONS FOR SELECTING CATEGORY */}
             <div className="flex flex-wrap justify-center gap-2">
@@ -186,7 +186,8 @@ const FloatingSkills = () => {
         </div>
         <div 
             ref={containerRef}
-            className="flex-grow relative overflow-hidden bg-slate-900 rounded-b-lg border-b-2 border-x-2 border-purple-300"
+            className="flex-grow relative overflow-hidden bg-slate-900 
+            bg-opacity-50 rounded-b-lg border-b-2 border-x-2 border-fuchsia-200"
             style={{ minHeight: '300px' }}
         >
             <AnimatePresence>
