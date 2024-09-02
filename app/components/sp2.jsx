@@ -66,9 +66,9 @@ const SkillCard = ({ skill, isSelected, position, index, totalSelected }) => {
     const offsetX = isMobile ? 20 : 50;
     const offsetY = isMobile ? 20 : 50;
 
-    const cardSize = isMobile ? 'w-24 h-24' : 'w-32 h-32';
-    const iconSize = isMobile ? 'text-4xl' : 'text-6xl';
-    const textSize = isMobile ? 'text-xs' : 'text-sm';
+    const cardSize = isMobile ? 'w-24 h-24' : 'w-36 h-40';
+    const iconSize = isMobile ? 'text-4xl' : 'text-8xl';
+    const textSize = isMobile ? 'text-xs' : 'text-lg';
 
     return (
         <motion.div
