@@ -13,23 +13,7 @@ import Css3Original from "react-devicons/css3/original";
 import Html5Original from "react-devicons/html5/original";
 import MysqlOriginal from "react-devicons/mysql/original";
 
-
-//===============================================================================
-//===============================================================================
-/**
- * THINGS TO DO ON THIS COMPONENT
- * - Alphabatize the skills
- * - Add more (MySql etc)
- * - Better differentiate the highlighted skills
- * - Center the selected grid????
- * 
- * -- comments updated 2024-09-02 -CN
- */
-//===============================================================================
-//===============================================================================
-
-
-// Define the skills array with name and category
+// Skills array (unchanged)
 const skills = [
   { name: 'React', category: 'Frontend' },
   { name: 'Python', category: 'Backend' },
@@ -45,6 +29,7 @@ const skills = [
   { name: 'MySQL', category: 'Database' },
 ];
 
+// Skill icons (unchanged)
 const skillIcons = {
   'C Sharp': <CsharpOriginal/>,
   'Python': <PythonOriginal/>,
@@ -60,22 +45,34 @@ const skillIcons = {
   "MySQL": <MysqlOriginal />,
 }
 
-// Extract unique categories from the skills array
+// Extract unique categories (unchanged)
 const categories = [...new Set(skills.map(skill => skill.category))];
 
-// SkillCard component represents each individual skill card
+// Updated SkillCard component
 const SkillCard = ({ skill, isSelected, position, index, totalSelected }) => {
-    const gridColumns = Math.ceil(Math.sqrt(totalSelected));
+    const [windowWidth, setWindowWidth] = useState(typeof window !== 'undefined' ? window.innerWidth : 0);
+
+    useEffect(() => {
+        const handleResize = () => setWindowWidth(window.innerWidth);
+        window.addEventListener('resize', handleResize);
+        return () => window.removeEventListener('resize', handleResize);
+    }, []);
+
+    const isMobile = windowWidth <= 768;
+    const gridColumns = isMobile ? 2 : Math.ceil(Math.sqrt(totalSelected));
     const row = Math.floor(index / gridColumns);
     const col = index % gridColumns;
 
-    // Offset to move the grid away from the edges
-    const offsetX = 50;
-    const offsetY = 50;
+    const offsetX = isMobile ? 20 : 50;
+    const offsetY = isMobile ? 20 : 50;
+
+    const cardSize = isMobile ? 'w-24 h-24' : 'w-32 h-32';
+    const iconSize = isMobile ? 'text-4xl' : 'text-6xl';
+    const textSize = isMobile ? 'text-xs' : 'text-sm';
 
     return (
         <motion.div
-            className={`absolute p-6 rounded-lg shadow-md ${
+            className={`absolute ${cardSize} p-2 rounded-lg shadow-md flex flex-col items-center justify-center ${
                 isSelected 
                     ? 'bg-slate-700 text-white z-10 border-2 border-fuchsia-200' 
                     : 'bg-gray-500 bg-opacity-50 text-white'
@@ -92,15 +89,14 @@ const SkillCard = ({ skill, isSelected, position, index, totalSelected }) => {
             }
             transition={{ type: 'spring', stiffness: 300, damping: 20 }}
         >
-            <div className="text-8xl">{skillIcons[skill.name]}</div>
-            <h3 className="text-base font-bold mt-2">{skill.name}</h3>
-            <p className="text-xs opacity-75">{skill.category}</p>
+            <div className={`${iconSize} mb-1`}>{skillIcons[skill.name]}</div>
+            <h3 className={`${textSize} font-bold text-center`}>{skill.name}</h3>
+            {/* <p className={`${textSize} opacity-75 text-center`}>{skill.category}</p> */}
         </motion.div>
     );
 };
-  
 
-// FloatingSkills - main component that renders all skill cards
+// Updated FloatingSkills component
 const FloatingSkills = () => {
     const [selectedCategory, setSelectedCategory] = useState(null);
     const [cardStates, setCardStates] = useState([]);
@@ -108,26 +104,26 @@ const FloatingSkills = () => {
 
     useEffect(() => {
         const updateCardStates = () => {
-        if (containerRef.current) {
-            const { width, height } = containerRef.current.getBoundingClientRect();
-            setCardStates(skills.map(() => ({
-            position: {
-                x: Math.random() * (width - 200),
-                y: Math.random() * (height - 150),
-            },
-            velocity: {
-                x: (Math.random() - 0.5) * 2,
-                y: (Math.random() - 0.5) * 2,
-            },
-            })));
-        }
+            if (containerRef.current) {
+                const { width, height } = containerRef.current.getBoundingClientRect();
+                setCardStates(skills.map(() => ({
+                    position: {
+                        x: Math.random() * (width - 100),
+                        y: Math.random() * (height - 100),
+                    },
+                    velocity: {
+                        x: (Math.random() - 0.5) * 2,
+                        y: (Math.random() - 0.5) * 2,
+                    },
+                })));
+            }
         };
 
         updateCardStates();
         window.addEventListener('resize', updateCardStates);
 
         return () => {
-        window.removeEventListener('resize', updateCardStates);
+            window.removeEventListener('resize', updateCardStates);
         };
     }, []);
 
@@ -137,25 +133,25 @@ const FloatingSkills = () => {
 
     const animateFloatingCards = () => {
         setCardStates(prevStates => 
-        prevStates.map(state => {
-            const newX = state.position.x + state.velocity.x;
-            const newY = state.position.y + state.velocity.y;
-            
-            let newVelocityX = state.velocity.x;
-            let newVelocityY = state.velocity.y;
+            prevStates.map(state => {
+                const newX = state.position.x + state.velocity.x;
+                const newY = state.position.y + state.velocity.y;
+                
+                let newVelocityX = state.velocity.x;
+                let newVelocityY = state.velocity.y;
 
-            if (newX <= 0 || newX >= containerRef.current.clientWidth - 200) {
-            newVelocityX *= -1;
-            }
-            if (newY <= 0 || newY >= containerRef.current.clientHeight - 150) {
-            newVelocityY *= -1;
-            }
+                if (newX <= 0 || newX >= containerRef.current.clientWidth - 100) {
+                    newVelocityX *= -1;
+                }
+                if (newY <= 0 || newY >= containerRef.current.clientHeight - 100) {
+                    newVelocityY *= -1;
+                }
 
-            return {
-            position: { x: newX, y: newY },
-            velocity: { x: newVelocityX, y: newVelocityY },
-            };
-        })
+                return {
+                    position: { x: newX, y: newY },
+                    velocity: { x: newVelocityX, y: newVelocityY },
+                };
+            })
         );
     };
 
@@ -168,41 +164,39 @@ const FloatingSkills = () => {
     
     return (
         <div className="flex flex-col h-full w-full">
-        <div className="flex-none p-4 bg-slate-900 bg-opacity-50 rounded-t-lg border-t-2 border-x-2 border-fuchsia-200">
-            
-            {/* RADIO BUTTONS FOR SELECTING CATEGORY */}
-            <div className="flex flex-wrap justify-center gap-2">
-            {categories.map(category => (
-                <button
-                key={category}
-                onClick={() => handleCategorySelect(category)}
-                className={`px-4 py-2 rounded transition-colors
-                    ${selectedCategory === category ? 'bg-blue-500 text-white' : 'bg-gray-300 text-gray-700'}`}
-                >
-                {category}
-                </button>
-            ))}
+            <div className="flex-none p-4 bg-slate-900 bg-opacity-50 rounded-t-lg border-t-2 border-x-2 border-fuchsia-200">
+                <div className="flex flex-wrap justify-center gap-2">
+                    {categories.map(category => (
+                        <button
+                            key={category}
+                            onClick={() => handleCategorySelect(category)}
+                            className={`px-2 py-1 text-sm md:px-4 md:py-2 md:text-base rounded transition-colors
+                                ${selectedCategory === category ? 'bg-blue-500 text-white' : 'bg-gray-300 text-gray-700'}`}
+                        >
+                            {category}
+                        </button>
+                    ))}
+                </div>
             </div>
-        </div>
-        <div 
-            ref={containerRef}
-            className="flex-grow relative overflow-hidden bg-slate-900 
-            bg-opacity-50 rounded-b-lg border-b-2 border-x-2 border-fuchsia-200"
-            style={{ minHeight: '300px' }}
-        >
-            <AnimatePresence>
-            {skills.map((skill, index) => (
-                <SkillCard
-                key={skill.name}
-                skill={skill}
-                isSelected={selectedCategory === skill.category}
-                position={cardStates[index]?.position || { x: 0, y: 0 }}
-                index={selectedSkills.findIndex(s => s.name === skill.name)}
-                totalSelected={selectedSkills.length}
-                />
-            ))}
-            </AnimatePresence>
-        </div>
+            <div 
+                ref={containerRef}
+                className="flex-grow relative overflow-hidden bg-slate-900 
+                bg-opacity-50 rounded-b-lg border-b-2 border-x-2 border-fuchsia-200"
+                style={{ minHeight: '300px' }}
+            >
+                <AnimatePresence>
+                    {skills.map((skill, index) => (
+                        <SkillCard
+                            key={skill.name}
+                            skill={skill}
+                            isSelected={selectedCategory === skill.category}
+                            position={cardStates[index]?.position || { x: 0, y: 0 }}
+                            index={selectedSkills.findIndex(s => s.name === skill.name)}
+                            totalSelected={selectedSkills.length}
+                        />
+                    ))}
+                </AnimatePresence>
+            </div>
         </div>
     );
 };
