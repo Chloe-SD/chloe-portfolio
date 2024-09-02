@@ -14,9 +14,6 @@ const Media = () => {
                     target="_blank">
                     <Linkedin size={24} />
                 </a>
-                <a href="mailto:chloe.nibali@edu.sait.ca" className="hover:text-pink-300 transition-colors">
-                    <Mail size={24}/>
-                </a>
             </div>
     );
 };

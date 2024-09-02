@@ -13,6 +13,7 @@ import NodejsOriginal from "react-devicons/nodejs/original";
 import Css3Original from "react-devicons/css3/original";
 import Html5Original from "react-devicons/html5/original";
 import MysqlOriginal from "react-devicons/mysql/original";
+import SqliteOriginal from "react-devicons/sqlite/original";
 
 // Skills array (unchanged)
 const skills = [
@@ -26,6 +27,7 @@ const skills = [
     { name: 'Node.js', category: 'Backend' },
     { name: 'Python', category: 'Backend' },
     { name: 'React', category: 'Frontend' },
+    { name: 'SQLite', category: 'Database'},
     { name: 'TailWind', category: 'Frontend' },
     { name: 'TypeScript', category: 'Backend' },
 ];
@@ -44,6 +46,7 @@ const skillIcons = {
   "CSS 3": <Css3Original />,
   "HTML 5": <Html5Original />,
   "MySQL": <MysqlOriginal />,
+  "SQLite": <SqliteOriginal />,
 }
 
 // Extract unique categories (unchanged)
