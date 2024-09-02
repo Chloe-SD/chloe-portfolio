@@ -110,7 +110,6 @@ const FloatingSkills = () => {
     const containerRef = useRef(null);
     const [containerSize, setContainerSize] = useState({ width: 0, height: 0 });
     const [windowWidth, setWindowWidth] = useState(0); // Initialize to 0 to avoid SSR issues
-    const [isReady, setIsReady] = useState(false);
 
     useEffect(() => {
         const updateSize = () => {
@@ -124,8 +123,8 @@ const FloatingSkills = () => {
                         y: Math.random() * (height - 100),
                     },
                     velocity: {
-                        x: (Math.random() - 0.5) * 2,
-                        y: (Math.random() - 0.5) * 2,
+                        x: (Math.random() - 0.5) * 4,
+                        y: (Math.random() - 0.5) * 4,
                     },
                 })));
             }
@@ -176,7 +175,7 @@ const FloatingSkills = () => {
     
     
     return (
-        <div className="flex flex-col h-full w-full">
+        <div className="flex flex-col h-full w-full select-none">
             <div className="flex-none p-4 bg-slate-900 bg-opacity-50 rounded-t-lg border-t-2 border-x-2 border-fuchsia-200">
                 <div className="flex flex-wrap justify-center gap-2">
                     {categories.map(category => (
@@ -193,7 +192,7 @@ const FloatingSkills = () => {
             </div>
             <div 
                 ref={containerRef}
-                className="flex-grow relative overflow-hidden bg-slate-900 
+                className="flex-grow relative overflow-hidden bg-slate-900
                 bg-opacity-50 rounded-b-lg border-b-2 border-x-2 border-fuchsia-200"
                 style={{ minHeight: '300px' }}
             >

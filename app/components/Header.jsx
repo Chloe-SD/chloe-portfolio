@@ -18,42 +18,45 @@ const Header = () => {
     }, []);
 
     return (
-        <header className={`p-4 md:p-6 flex justify-between items-center w-full md:w-3/4 self-center 
+        <header className={`p-4 md:p-6 flex justify-center items-center w-full 
         ${isFixed ? 'fixed top-0' : ''} 
         bg-slate-900 opacity-95 rounded-md mt-2 z-50`}>
-            <h1 className="text-2xl md:text-4xl font-bold text-fuchsia-200">Chloe Nibali</h1>
-            
-            {/* Mobile menu button */}
-            <button 
-                className="md:hidden text-white"
-                onClick={() => setIsMenuOpen(!isMenuOpen)}
-            >
-                {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
-            </button>
+            <div className='flex justify-between items-center w-full md:w-3/4 self-center'>
+                <h1 className="text-2xl md:text-4xl font-semibold text-fuchsia-200">Chloe Nibali</h1>
+                
+                {/* Mobile menu button */}
+                <button 
+                    className="md:hidden text-white"
+                    onClick={() => setIsMenuOpen(!isMenuOpen)}
+                >
+                    {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
+                </button>
 
-            {/* Desktop navigation */}
-            <nav className="hidden md:block">
-                <ul className="flex space-x-4">
-                    <li><a href="#about" className="hover:text-pink-300 transition-colors text-xl">About</a></li>
-                    <li><a href="#projects" className="hover:text-pink-300 transition-colors text-xl">Projects</a></li>
-                    <li><a href="#contact" className="hover:text-pink-300 transition-colors text-xl">Contact</a></li>
-                </ul>
-            </nav>
-
-            {/* Mobile navigation */}
-            {isMenuOpen && (
-                <nav className="absolute top-full left-0 right-0 bg-slate-900 opacity-95 md:hidden">
-                    <ul className="flex flex-col items-center py-4">
-                        <li className="my-2"><a href="#about" className="hover:text-pink-300 transition-colors text-xl" onClick={() => setIsMenuOpen(false)}>About</a></li>
-                        <li className="my-2"><a href="#projects" className="hover:text-pink-300 transition-colors text-xl" onClick={() => setIsMenuOpen(false)}>Projects</a></li>
-                        <li className="my-2"><a href="#contact" className="hover:text-pink-300 transition-colors text-xl" onClick={() => setIsMenuOpen(false)}>Contact</a></li>
+                {/* Desktop navigation */}
+                <nav className="hidden md:block">
+                    <ul className="flex space-x-4">
+                        <li><a href="#about" className="hover:text-pink-300 transition-colors text-xl">About</a></li>
+                        <li><a href="#projects" className="hover:text-pink-300 transition-colors text-xl">Projects</a></li>
+                        <li><a href="#contact" className="hover:text-pink-300 transition-colors text-xl">Contact</a></li>
                     </ul>
                 </nav>
-            )}
 
-            <div className="hidden md:block">
-                <Media />
+                {/* Mobile navigation */}
+                {isMenuOpen && (
+                    <nav className="absolute top-full left-0 right-0 bg-slate-900 opacity-95 md:hidden">
+                        <ul className="flex flex-col items-center py-4">
+                            <li className="my-2"><a href="#about" className="hover:text-pink-300 transition-colors text-xl" onClick={() => setIsMenuOpen(false)}>About</a></li>
+                            <li className="my-2"><a href="#projects" className="hover:text-pink-300 transition-colors text-xl" onClick={() => setIsMenuOpen(false)}>Projects</a></li>
+                            <li className="my-2"><a href="#contact" className="hover:text-pink-300 transition-colors text-xl" onClick={() => setIsMenuOpen(false)}>Contact</a></li>
+                        </ul>
+                    </nav>
+                )}
+
+                <div className="hidden md:block">
+                    <Media />
+                </div>
             </div>
+            
         </header>
     );
 };

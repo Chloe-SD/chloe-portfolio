@@ -22,11 +22,12 @@ html {
 }
 
 body {
-  background-image: url("../public/cmore3.jpg");
+  background-image: url("../public/cmore1.jpg");
   background-size: cover;
   background-position: center;
   background-attachment: fixed;
 }
+
 
 @layer utilities {
   .text-balance {
