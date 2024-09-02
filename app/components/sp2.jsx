@@ -1,3 +1,4 @@
+"use client"
 import React, { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import CsharpOriginal from "react-devicons/csharp/original";
@@ -100,13 +101,16 @@ const SkillCard = ({ skill, isSelected, position, index, totalSelected, containe
     );
 };
 
+
+
 // Updated FloatingSkills component
 const FloatingSkills = () => {
     const [selectedCategory, setSelectedCategory] = useState(null);
     const [cardStates, setCardStates] = useState([]);
     const containerRef = useRef(null);
     const [containerSize, setContainerSize] = useState({ width: 0, height: 0 });
-    const [windowWidth, setWindowWidth] = useState(typeof window !== 'undefined' ? window.innerWidth : 0);
+    const [windowWidth, setWindowWidth] = useState(0); // Initialize to 0 to avoid SSR issues
+    const [isReady, setIsReady] = useState(false);
 
     useEffect(() => {
         const updateSize = () => {
@@ -169,6 +173,7 @@ const FloatingSkills = () => {
     }, [containerSize]);
     
     const selectedSkills = selectedCategory === null ? [] : skills.filter(skill => skill.category === selectedCategory);
+    
     
     return (
         <div className="flex flex-col h-full w-full">
