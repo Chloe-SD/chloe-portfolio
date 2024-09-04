@@ -185,8 +185,9 @@ const FloatingSkills = () => {
                         <button
                             key={category}
                             onClick={() => handleCategorySelect(category)}
-                            className={`px-2 py-1 text-sm md:px-4 md:py-2 md:text-base rounded transition-colors
-                                ${selectedCategory === category ? 'bg-fuchsia-700 text-white' : 'bg-fuchsia-200 text-gray-700'}`}
+                            className={`px-2 py-1 text-sm md:px-4 md:py-2 md:text-base rounded-md
+                                border-2 border-fuchsia-200 shadow-md shadow-purple-800 transition-colors
+                                ${selectedCategory === category ? 'bg-fuchsia-700 text-white' : 'bg-pink-500 text-white hover:bg-pink-600'}`}
                         >
                             {category}
                         </button>

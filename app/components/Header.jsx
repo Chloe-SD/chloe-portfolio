@@ -17,12 +17,20 @@ const Header = () => {
         return () => window.removeEventListener('resize', checkIfFixed);
     }, []);
 
+    const scrollToTop = () => {
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+        });
+    };
+
     return (
-        <header className={`p-4 md:p-6 flex justify-center items-center w-full 
+        <header className={`p-4 md:p-6 flex justify-center items-center w-full select-none
         ${isFixed ? 'fixed top-0' : ''} 
         bg-slate-900 opacity-95 rounded-md mt-2 z-50`}>
             <div className='flex justify-between items-center w-full md:w-3/4 self-center'>
-                <h1 className="text-2xl md:text-4xl font-semibold text-fuchsia-200">Chloe Nibali</h1>
+                <h1 className="text-2xl md:text-4xl font-semibold text-fuchsia-200 cursor-pointer"
+                onClick={scrollToTop}>Chloe Nibali</h1>
                 
                 {/* Mobile menu button */}
                 <button 
