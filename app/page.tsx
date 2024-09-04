@@ -22,7 +22,9 @@ export default function Home() {
               <br/><br/>
               I have a strong foundation in coding, and a track record of success. Lets make something great together!
             </p>
-            <a href="#skills" className="bg-pink-500 hover:bg-pink-600 text-white font-bold py-2 px-4 rounded transition-colors text-sm md:text-base">
+            <a href="#skills" className="bg-pink-500 hover:bg-pink-600 text-white font-bold py-2 px-4 rounded-md 
+            transition-colors text-sm md:text-base border-2 border-fuchsia-200
+            shadow-md shadow-purple-800">
               See My Skills
             </a>
             <a href="#skills" className="mt-8 animate-bounce">
