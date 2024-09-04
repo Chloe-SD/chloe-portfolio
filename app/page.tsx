@@ -4,6 +4,7 @@ import { ChevronDown } from 'lucide-react';
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 import FloatingSkills from './components/sp2';
+import ContactForm from "./Contact";
 
 export default function Home() {
   return (
@@ -35,6 +36,15 @@ export default function Home() {
           <div className='h-5/6 w-full md:h-3/4 md:w-3/4'>
             <p className="text-center mb-4 text-xl md:text-2xl">My Skills</p>
             <FloatingSkills/>
+          </div>
+        </section>
+
+
+        {/* Contact form section */}
+        <section id='contact' className='h-screen flex items-center justify-center p-4 md:p-6'>
+          <div className='w-full md:w-3/4'>
+          <p className="text-center mb-4 text-xl md:text-2xl">Contact Me</p>
+            <ContactForm/>
           </div>
         </section>
 
