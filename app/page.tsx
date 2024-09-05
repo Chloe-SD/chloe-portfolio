@@ -3,7 +3,7 @@ import React from 'react';
 import { ChevronDown, ChevronUp } from 'lucide-react';
 import Header from "./components/Header";
 import Footer from "./components/Footer";
-import FloatingSkills from './components/sp2';
+import FloatingSkills from './components/SkillPool';
 import ContactForm from "./Contact";
 
 export default function Home() {
@@ -14,7 +14,7 @@ export default function Home() {
       
       <main className="flex-grow flex flex-col pt-16 md:pt-20"> {/* Added padding-top to account for fixed header */}
           {/* First Section / WELCOME */}
-          <section className="min-h-screen flex flex-col items-center justify-center p-4 md:p-6 select-none">
+          <section id="welcome" className="min-h-screen flex flex-col items-center justify-center p-4 md:p-6 select-none">
             <h2 className="text-3xl md:text-4xl lg:text-6xl font-semibold mb-4 text-center">Welcome, I&apos;m Chloe!</h2>
             <p className="text-lg md:text-xl lg:text-2xl text-gray-400 mb-8 text-center max-w-2xl px-4">
             

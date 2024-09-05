@@ -3,36 +3,63 @@ import Media from './Media';
 import { Menu, X } from 'lucide-react';
 
 const Header = () => {
-    const [isMenuOpen, setIsMenuOpen] = useState(false);
-    const [isFixed, setIsFixed] = useState(false);
+    const [isMenuOpen, setIsMenuOpen] = useState(false); // for closing menu on mobile
+    const [activeSection, setActiveSection] = useState(''); // for highlighting current sections link
+    const [isCompact, setIsCompact] = useState(false); // for scaling down header outside of welcome section
 
+    // hook sets header values on mount, and listens for scroll
     useEffect(() => {
-        const checkIfFixed = () => {
-            setIsFixed(window.innerWidth >= 768); // 768px is the typical breakpoint for md in Tailwind
+        const handleScroll = () => {
+            const sections = ['welcome', 'about', 'projects', 'contact'];
+            const scrollPosition = window.scrollY + 100; // 100 to account for header height
+
+            for (const section of sections) { // iterate through each section ID
+                const element = document.getElementById(section);
+                // Check if scroll position is within the section
+                if (element && scrollPosition >= element.offsetTop && scrollPosition < element.offsetTop + element.offsetHeight) {
+                    // set the active selection to the section currently displayed
+                    setActiveSection(section);
+                    break;
+                }
+            }
+            setIsCompact(window.scrollY > 400); // Change to compact after scrolling 100px
         };
-
-        checkIfFixed(); // Check on initial render
-        window.addEventListener('resize', checkIfFixed);
-
-        return () => window.removeEventListener('resize', checkIfFixed);
+        // listener for scroll actions.
+        window.addEventListener('scroll', handleScroll);
+        return () => window.removeEventListener('scroll', handleScroll);
     }, []);
 
+    // for returning to welcome section when title is clicked
     const scrollToTop = () => {
-        window.scrollTo({
-            top: 0,
-            behavior: 'smooth'
-        });
+        window.scrollTo({ top: 0, behavior: 'smooth' });
     };
 
+    // wrapper for section links. cleaner than copy-paste values for each one. 
+    const NavLink = ({ href, children }) => (
+        <li>
+            <a
+                href={href}
+                className={`transition-colors text-lg md:text-xl px-2 py-1 rounded
+                ${activeSection === href.slice(1) ? 'text-fuchsia-400' : 'text-white hover:text-pink-300'}`}
+                onClick={() => setIsMenuOpen(false)}
+            >
+                {children}
+            </a>
+        </li>
+    );
+
     return (
-        <header className={`p-4 md:p-6 flex justify-center items-center w-full select-none
-        ${isFixed ? 'fixed top-0' : ''} 
-        bg-slate-900 opacity-95 rounded-md mt-2 z-50`}>
-            <div className='flex justify-between items-center w-full md:w-3/4 self-center'>
-                <h1 className="text-2xl md:text-4xl font-semibold text-fuchsia-200 cursor-pointer"
-                onClick={scrollToTop}>Chloe Nibali</h1>
+        <header className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 bg-slate-900 bg-opacity-95
+            ${isCompact ? 'py-2' : 'py-4 md:py-6'}`}>
+            <div className='container mx-auto px-4 flex justify-between items-center md:w-3/4'>
+                <h1 
+                    className={`font-semibold text-fuchsia-200 cursor-pointer transition-all duration-300
+                    ${isCompact ? 'text-xl md:text-2xl' : 'text-2xl md:text-4xl'}`}
+                    onClick={scrollToTop}
+                >
+                    Code by Chloe
+                </h1>
                 
-                {/* Mobile menu button */}
                 <button 
                     className="md:hidden text-white"
                     onClick={() => setIsMenuOpen(!isMenuOpen)}
@@ -40,31 +67,19 @@ const Header = () => {
                     {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
                 </button>
 
-                {/* Desktop navigation */}
-                <nav className="hidden md:block">
-                    <ul className="flex space-x-4">
-                        <li><a href="#about" className="hover:text-pink-300 transition-colors text-xl">About</a></li>
-                        <li><a href="#projects" className="hover:text-pink-300 transition-colors text-xl">Projects</a></li>
-                        <li><a href="#contact" className="hover:text-pink-300 transition-colors text-xl">Contact</a></li>
+                <nav className={`md:block ${isMenuOpen ? 'block' : 'hidden'} 
+                    absolute md:relative top-full left-0 right-0 md:top-auto bg-slate-900 md:bg-transparent`}>
+                    <ul className="flex flex-col md:flex-row items-center md:space-x-4 py-4 md:py-0">
+                        <NavLink href="#about">About</NavLink>
+                        <NavLink href="#projects">Projects</NavLink>
+                        <NavLink href="#contact">Contact</NavLink>
                     </ul>
                 </nav>
-
-                {/* Mobile navigation */}
-                {isMenuOpen && (
-                    <nav className="absolute top-full left-0 right-0 bg-slate-900 opacity-95 md:hidden">
-                        <ul className="flex flex-col items-center py-4">
-                            <li className="my-2"><a href="#about" className="hover:text-pink-300 transition-colors text-xl" onClick={() => setIsMenuOpen(false)}>About</a></li>
-                            <li className="my-2"><a href="#projects" className="hover:text-pink-300 transition-colors text-xl" onClick={() => setIsMenuOpen(false)}>Projects</a></li>
-                            <li className="my-2"><a href="#contact" className="hover:text-pink-300 transition-colors text-xl" onClick={() => setIsMenuOpen(false)}>Contact</a></li>
-                        </ul>
-                    </nav>
-                )}
 
                 <div className="hidden md:block">
                     <Media />
                 </div>
             </div>
-            
         </header>
     );
 };
