@@ -3,7 +3,7 @@ import React from 'react';
 import { ChevronDown, ChevronUp } from 'lucide-react';
 import Header from "./components/Header";
 import Footer from "./components/Footer";
-import FloatingSkills from './components/SkillPool';
+import FloatingSkills from './components/skillpool';
 import ContactForm from "./Contact";
 
 export default function Home() {
