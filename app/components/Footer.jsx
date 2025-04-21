@@ -18,7 +18,7 @@ const Footer = () => {
         justify-between items-center space-y-4 md:space-y-0 
         md:space-x-4 w-full md:w-3/4 self-center select-none">
             <div className='flex items-center justify-center space-x-2 w-full'>
-                <p className="text-center md:self-start">&copy; Chloe Nibali 2024</p>
+                <p className="text-center md:self-start">&copy; Chloe Nibali 2025</p>
                 
                 <ChevronUp size={24} 
                 className='animate-bounce cursor-pointer self-center'
