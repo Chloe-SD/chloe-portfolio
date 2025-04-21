@@ -1,10 +1,34 @@
-// ProjectModal.jsx - Updated Image handling
-import React, { useState } from 'react';
+// ProjectModal.jsx - With outside click to close
+import React, { useState, useRef, useEffect } from 'react';
 import Image from 'next/image';
 import { X, ChevronLeft, ChevronRight, Github, ExternalLink } from 'lucide-react';
 
 const ProjectModal = ({ project, isOpen, onClose }) => {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  const modalContentRef = useRef(null);
+  
+  // Handle outside clicks
+  useEffect(() => {
+    function handleClickOutside(event) {
+      if (modalContentRef.current && !modalContentRef.current.contains(event.target)) {
+        onClose();
+      }
+    }
+    
+    // Only add listener if the modal is open
+    if (isOpen) {
+      document.addEventListener("mousedown", handleClickOutside);
+      // Add escape key functionality too
+      document.addEventListener("keydown", (e) => {
+        if (e.key === "Escape") onClose();
+      });
+    }
+    
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+      document.removeEventListener("keydown", handleClickOutside);
+    };
+  }, [isOpen, onClose]);
   
   if (!isOpen) return null;
   
@@ -30,13 +54,18 @@ const ProjectModal = ({ project, isOpen, onClose }) => {
 
   return (
     <div className="fixed inset-0 bg-black bg-opacity-80 flex items-center justify-center z-50 p-4">
-      <div className="bg-slate-900 border-2 border-fuchsia-200 shadow-lg shadow-purple-800 
-                     rounded-md w-full max-w-4xl max-h-[90vh] overflow-y-auto">
+      <div 
+        ref={modalContentRef}
+        className="bg-slate-900 border-2 border-fuchsia-200 shadow-lg shadow-purple-800 
+                 rounded-md w-full max-w-4xl max-h-[90vh] overflow-y-auto relative"
+      >
         {/* Close button */}
         <button 
           onClick={onClose} 
           className="absolute top-4 right-4 bg-slate-800 hover:bg-slate-700 
-                    p-2 rounded-full text-white z-10"
+                   p-2 rounded-full text-white z-10 transition-all hover:bg-pink-600
+                   flex items-center justify-center"
+          aria-label="Close modal"
         >
           <X size={20} />
         </button>
@@ -135,7 +164,7 @@ const ProjectModal = ({ project, isOpen, onClose }) => {
           )}
           
           {/* Links */}
-          <div className="flex space-x-4 mt-8">
+          <div className="flex flex-wrap gap-4 mt-8">
             {githubUrl && (
               <a 
                 href={githubUrl} 
