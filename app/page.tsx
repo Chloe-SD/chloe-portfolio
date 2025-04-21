@@ -5,7 +5,7 @@ import Header from "./components/Header";
 import Footer from "./components/Footer";
 import FloatingSkills from './components/skillpool';
 import ContactForm from "./Contact";
-import Projects from "./components/Projects";
+import ProjectsSection from "./components/ProjectsSection";
 
 export default function Home() {
   return (
@@ -46,7 +46,7 @@ export default function Home() {
         <section id="projects" className="flex items-center justify-center p-4 md:p-6 select-none">
         <div className='flex flex-col items-center justify-center h-full w-full md:w-3/4'>
             <p className="text-center mb-4 text-xl md:text-2xl">My Projects</p>
-            <Projects/>
+            <ProjectsSection/>
           </div>
         </section>
 
