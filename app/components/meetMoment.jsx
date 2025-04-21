@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import Image from 'next/image';
-import meetWebReq from '/public/MeetMoment/meetWebReq.png';
-import meetCreateNew from '/public/MeetMoment/meetCreateNew.png';
-import meetCommonAvail from '/public/MeetMoment/meetCommonAvail.png';
+import meetWebReq from '/public/meetMoment/meetWebReq.png';
+import meetCreateNew from '/public/meetMoment/MeetCreateNew.png';
+import meetCommonAvail from '/public/meetMoment/MeetCommonAvail.png';
 
 const images = [
   { src: meetWebReq, description: 'Web Request Page' },
