@@ -14,39 +14,69 @@ import Css3Original from "react-devicons/css3/original";
 import Html5Original from "react-devicons/html5/original";
 import MysqlOriginal from "react-devicons/mysql/original";
 import SqliteOriginal from "react-devicons/sqlite/original";
+import IconPostgresql from "react-devicons/postgresql/original";
+import AzureOriginal from "react-devicons/azure/original";
+import DockerOriginal from "react-devicons/docker/original";
+import VercelOriginal from "react-devicons/vercel/original";
 
 // Skills array (unchanged)
 const skills = [
-    { name: 'C Sharp', category: 'Backend' },
-    { name: 'CSS 3', category: 'Frontend' },
-    { name: 'Firebase', category: 'Database' },
-    { name: 'HTML 5', category: 'Frontend' },
-    { name: 'Java', category: 'Backend' },
-    { name: 'JavaScript', category: 'Backend' },
-    { name: 'MySQL', category: 'Database' },
-    { name: 'Node.js', category: 'Backend' },
-    { name: 'Python', category: 'Backend' },
-    { name: 'React', category: 'Frontend' },
+    //languages
+    { name: 'Python', category: 'Languages' },
+    { name: 'Java', category: 'Languages' },
+    { name: 'JavaScript', category: 'Languages' },
+    { name: 'TypeScript', category: 'Languages' },
+    { name: 'C Sharp', category: 'Languages' },
+    { name: 'HTML 5', category: 'Languages' },
+    
+    
+    //Frameworks
+    { name: 'Node.js', category: 'Frameworks' },
+    { name: 'React', category: 'Frameworks' },
+    { name: '.NET MAUI', category: 'Frameworks' },
+    { name: 'TailWind', category: 'Frameworks' },
+    
+
+    //Database
     { name: 'SQLite', category: 'Database'},
-    { name: 'TailWind', category: 'Frontend' },
-    { name: 'TypeScript', category: 'Backend' },
+    { name: 'MySQL', category: 'Database' },
+    { name: 'PostgreSQL', category: 'Database' },
+    { name: 'FireStore', category: 'Database' },
+   
+
+    //Platforms
+    { name: 'Azure', category: 'Platforms' },
+    { name: 'AWS', category: 'Platforms' },
+    { name: 'Firebase', category: 'Platforms' },
+    { name: 'Docker', category: 'Platforms' },
+    { name: 'Vercel', category: 'Platforms' },
+   
+  
 ];
+
+
 
 // Skill icons (unchanged)
 const skillIcons = {
-  'C Sharp': <CsharpOriginal/>,
-  'Python': <PythonOriginal/>,
-  'TailWind': <TailwindcssOriginalWordmark />,
-  'Java': <JavaOriginal />,
-  "TypeScript": <TypescriptOriginal />,
-  "JavaScript": <JavascriptOriginal />,
-  "Firebase": <FirebasePlain />,
-  "React": <ReactOriginal />,
-  "Node.js": <NodejsOriginal />,
-  "CSS 3": <Css3Original />,
-  "HTML 5": <Html5Original />,
-  "MySQL": <MysqlOriginal />,
-  "SQLite": <SqliteOriginal />,
+    'C Sharp': <CsharpOriginal/>,
+    'Python': <PythonOriginal/>,
+    'TailWind': <TailwindcssOriginalWordmark />,
+    'Java': <JavaOriginal />,
+    "TypeScript": <TypescriptOriginal />,
+    "JavaScript": <JavascriptOriginal />,
+    "Firebase": <FirebasePlain />,
+    "FireStore": <FirebasePlain />,
+    "React": <ReactOriginal />,
+    "Node.js": <NodejsOriginal />,
+    "CSS 3": <Css3Original />,
+    "HTML 5": <Html5Original />,
+    "MySQL": <MysqlOriginal />,
+    "SQLite": <SqliteOriginal />,
+    "PostgreSQL": <IconPostgresql />,
+    "Azure": <AzureOriginal />,
+    "Docker": <DockerOriginal />,
+    "Vercel": <VercelOriginal />,
+    
 }
 
 // Extract unique categories (unchanged)
@@ -99,7 +129,7 @@ const SkillCard = ({ skill, isSelected, position, index, totalSelected, containe
         >
             <div className={`${iconSize} mb-2`}>{skillIcons[skill.name]}</div>
             <h3 className={`${textSize} font-bold text-center`}>{skill.name}</h3>
-            <p className={`${textSize} opacity-75 text-center`}>{skill.category}</p>
+            {/* <p className={`${textSize} opacity-75 text-center`}>{skill.category}</p> */}
         </motion.div>
     );
 };

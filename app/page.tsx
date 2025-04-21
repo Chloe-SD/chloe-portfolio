@@ -5,6 +5,7 @@ import Header from "./components/Header";
 import Footer from "./components/Footer";
 import FloatingSkills from './components/skillpool';
 import ContactForm from "./Contact";
+import Projects from "./components/Projects";
 
 export default function Home() {
   return (
@@ -22,11 +23,11 @@ export default function Home() {
               <br/><br/>
               I have a strong foundation in coding, and a track record of success. Lets make something great together!
             </p>
-            <a href="#about" className="bg-pink-500 hover:bg-pink-600 text-white font-bold py-2 px-4 rounded-md 
+            {/* <a href="#about" className="bg-pink-500 hover:bg-pink-600 text-white font-bold py-2 px-4 rounded-md 
             transition-colors text-sm md:text-base border-2 border-fuchsia-200
             shadow-md shadow-purple-800">
               See My Skills
-            </a>
+            </a> */}
             <a href="#about" className="mt-8 animate-bounce">
               <ChevronDown size={24} />
             </a>
@@ -36,16 +37,16 @@ export default function Home() {
         {/* About Section / TECH STACK */}
         <section id="about" className="h-screen flex items-center justify-center p-4 md:p-6 select-none">
           <div className='h-5/6 w-full md:h-3/4 md:w-3/4'>
-            <p className="text-center mb-4 text-xl md:text-2xl">My Skills</p>
+            <p className="text-center mb-4 text-xl md:text-2xl">Tech Stack</p>
             <FloatingSkills/>
           </div>
         </section>
 
         {/* Projects Section */}
-        <section id="projects" className="h-screen flex items-center justify-center p-4 md:p-6 select-none">
-        <div className='w-full md:w-3/4'>
+        <section id="projects" className="flex items-center justify-center p-4 md:p-6 select-none">
+        <div className='flex flex-col items-center justify-center h-full w-full md:w-3/4'>
             <p className="text-center mb-4 text-xl md:text-2xl">My Projects</p>
-            <p className="text-center mb-4 text-lg md:text-2xl">Projects section under construction, check back soon!</p>
+            <Projects/>
           </div>
         </section>
 
