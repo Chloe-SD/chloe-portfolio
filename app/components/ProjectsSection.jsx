@@ -9,7 +9,7 @@ import meetCreateNew from '../../public/meetMoment/MeetCreateNew.png';
 import meetCommonAvail from '../../public/meetMoment/MeetCommonAvail.png';
 
 // quantumDice images
-import qdPoster from '../../public/quantumDice/qDPoster.png';
+import qdPoster from '../../public/quantumDice/qdPoster.png';
 import qdNat20 from '../../public/quantumDice/qdNat20.png';
 import qdAbout from '../../public/quantumDice/qdAbout.png';
 import qdAbout2 from '../../public/quantumDice/qdAbout2.png';
