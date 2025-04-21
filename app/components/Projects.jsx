@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import Image from 'next/image';
-import meetWebReq from '/public/MeetMoment/meetWebReq.png';
+import meetWebReq from '/public/meetMoment/meetWebReq.png';
 import MeetMoment from './meetMoment';
 
 const projectData = [
