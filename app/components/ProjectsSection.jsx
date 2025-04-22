@@ -15,6 +15,13 @@ import qdAbout from '../../public/quantumDice/qdAbout.png';
 import qdAbout2 from '../../public/quantumDice/qdAbout2.png';
 import qdProbability from '../../public/quantumDice/qdProbability.png';
 
+//mechanic shop images
+import shop1 from '../../public/mechanicShop/shop1.png';
+import shop2 from '../../public/mechanicShop/shop2.png';
+import shop3 from '../../public/mechanicShop/shop3.png';
+import shop4 from '../../public/mechanicShop/shop4.png';
+import shop5 from '../../public/mechanicShop/shop5.png';
+
 // Sample project data structure
 const projectsData = [
   {
@@ -54,6 +61,25 @@ const projectsData = [
     lessons: 'I gained deep insights into state management across platforms and improved my skills in creating intuitive UIs for complex scheduling tasks.',
     githubUrl: 'https://github.com/Chloe-SD/MeetMoment',
     liveUrl: 'https://meetmoment-webapp.vercel.app/'
+  },
+  {
+    id: 'mechanicShop',
+    title: 'Mechanic Shop',
+    subtitle: 'Windows Native App',
+    description: 'A full mechanic shop management app, for service writers to track customer information and vehicles, appointments, repair orders, jobs and technicians.',
+    thumbnail: shop1, 
+    images: [
+      shop1, 
+      shop2, 
+      shop3,
+      shop4,
+      shop5 
+    ],
+    tags: ['.NET MAUI', 'C#', 'SQLite'],
+    techStack: ['.NET MAUI', 'C#', 'SQLite'],
+    challenges: 'Creating a highly intuitive UI, greying out buttons when not applicable and highlighting workflow steps.',
+    lessons: 'I learned a lot about .NET MAUI and C#. This was also my first database connected app, so I learned a lot about database design and integrity.',
+    githubUrl: 'https://github.com/Chloe-SD/MechanicShop'
   },
   // Add more projects here...
 ];
