@@ -28,8 +28,37 @@ import agency2 from '../../public/travelAgency/agency2.png';
 import agency3 from '../../public/travelAgency/agency3.png';
 import agency4 from '../../public/travelAgency/agency4.png';
 
+//astute accounting images
+import aa1 from '../../public/astuteAccounting/aa1.png';
+import aa2 from '../../public/astuteAccounting/aa2.png';
+import aa3 from '../../public/astuteAccounting/aa3.png';
+import aa4 from '../../public/astuteAccounting/aa4.png';
+import aa5 from '../../public/astuteAccounting/aa5.png';
+import aa6 from '../../public/astuteAccounting/aa6.png';
+import aa7 from '../../public/astuteAccounting/aa7.png';
+
 // Sample project data structure
 const projectsData = [
+  {
+    id: 'astuteAccounting',
+    title: 'Astute Accounting',
+    subtitle: 'Web App',
+    description: 'My team\s SAIT Capstone project, an accounting document management system for an external client',
+    thumbnail: aa1, 
+    images: [
+      aa2, 
+      aa3,
+      aa4,
+      aa5,
+      aa6,
+      aa7
+    ],
+    tags: ['NextJS', 'Azure', 'Typescript'],  
+    techStack: ['NextJS', 'Azure', 'Typescript', 'PostgreSQL', 'Firebase'],
+    challenges: 'Security was top of mind for this project, strict RBAC and hierarchical permissions, separate portals, file encryption, and more. Another challenge was client communication and scope creep.',
+    lessons: 'I was the Security Specialist on this project, I learned a ton about secure coding practices, API protections, middleware, and much more! I also developed great team and client communication skills.',
+    liveUrl: 'https://astute-accounting.vercel.app/About'
+  },
   {
     id: 'quantumdice',
     title: 'Quantum Dice Simulator',
