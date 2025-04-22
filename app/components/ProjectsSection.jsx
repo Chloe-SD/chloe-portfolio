@@ -22,6 +22,12 @@ import shop3 from '../../public/mechanicShop/shop3.png';
 import shop4 from '../../public/mechanicShop/shop4.png';
 import shop5 from '../../public/mechanicShop/shop5.png';
 
+//travel agency images
+import agency1 from '../../public/travelAgency/agency1.png';
+import agency2 from '../../public/travelAgency/agency2.png';
+import agency3 from '../../public/travelAgency/agency3.png';
+import agency4 from '../../public/travelAgency/agency4.png';
+
 // Sample project data structure
 const projectsData = [
   {
@@ -80,6 +86,24 @@ const projectsData = [
     challenges: 'Creating a highly intuitive UI, greying out buttons when not applicable and highlighting workflow steps.',
     lessons: 'I learned a lot about .NET MAUI and C#. This was also my first database connected app, so I learned a lot about database design and integrity.',
     githubUrl: 'https://github.com/Chloe-SD/MechanicShop'
+  },
+  {
+    id: 'travelAgency',
+    title: 'Travel Agency',
+    subtitle: 'Windows Native App',
+    description: 'A flight booking and customer itinerary management app for travel agents',
+    thumbnail: agency1, 
+    images: [
+      agency1, 
+      agency2, 
+      agency3,
+      agency4 
+    ],
+    tags: ['.NET MAUI', 'C#', 'XAML'],
+    techStack: ['.NET MAUI', 'C#', 'XAML'],
+    challenges: 'This was my first full application with a UI, it was a crash course in UI and UX design.',
+    lessons: 'This is where I learned MVVM architecture. it was a challenging and rewarding experience and the lessons I learned from building this app have influenced all of my interfaces since.',
+    githubUrl: 'https://github.com/Chloe-SD/TravelAgencyTeam2'
   },
   // Add more projects here...
 ];
