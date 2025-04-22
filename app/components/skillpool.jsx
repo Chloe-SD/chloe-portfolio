@@ -212,17 +212,35 @@ const FloatingSkills = () => {
             <div className="flex-none p-4 bg-slate-900 bg-opacity-50 rounded-t-lg border-t-2 border-x-2 border-fuchsia-200">
                 <div className="flex flex-wrap justify-center gap-2">
                     {categories.map(category => (
-                        <button
-                            key={category}
-                            onClick={() => handleCategorySelect(category)}
-                            className={`px-2 py-1 text-sm md:px-4 md:py-2 md:text-base rounded-md
-                                border-2 border-fuchsia-200 shadow-md shadow-purple-800 transition-colors
-                                ${selectedCategory === category ? 'bg-fuchsia-700 text-white' : 'bg-pink-500 text-white hover:bg-pink-600'}`}
-                        >
-                            {category}
-                        </button>
+                    <button
+                        key={category}
+                        onClick={() => handleCategorySelect(category)}
+                        className={`px-2 py-1 text-sm md:px-4 md:py-2 md:text-base rounded-md
+                        border-2 border-fuchsia-200 shadow-md shadow-purple-800 transition-colors
+                        relative group ${selectedCategory === category ? 'bg-fuchsia-700 text-white' : 'bg-pink-500 text-white hover:bg-pink-600'}`}
+                    >
+                        {category}
+                        {/* Added pulse animation indicator */}
+                        {selectedCategory === null && (
+                        <span className="absolute -top-1 -right-1 flex h-3 w-3">
+                            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-fuchsia-400 opacity-75"></span>
+                            <span className="relative inline-flex rounded-full h-3 w-3 bg-fuchsia-500"></span>
+                        </span>
+                        )}
+                        {/* Hover tooltip */}
+                        {/* <span className="absolute -top-10 left-1/2 transform -translate-x-1/2 bg-slate-800 text-white 
+                        text-xs py-1 px-2 rounded opacity-0 group-hover:opacity-100 transition-opacity duration-200 whitespace-nowrap">
+                        Click to view {category} skills
+                        </span> */}
+                    </button>
                     ))}
                 </div>
+            {/* First-time visitor hint text */}
+            {selectedCategory === null && (
+                <p className="text-center text-fuchsia-200 text-sm mt-2 animate-pulse">
+                Click a category above to explore my skills
+                </p>
+            )}
             </div>
             <div 
                 ref={containerRef}

@@ -46,6 +46,7 @@ const projectsData = [
     description: 'My team\s SAIT Capstone project, an accounting document management system for an external client',
     thumbnail: aa1, 
     images: [
+      aa1,
       aa2, 
       aa3,
       aa4,
