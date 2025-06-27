@@ -33,8 +33,8 @@ const ContactForm: React.FC = () => {
         required
         maxLength={30}
         placeholder="Name"
+        autoComplete="name"
         className="bg-gray-700 rounded-md border-2 border-fuchsia-200 mb-3 p-2 w-full text-lg text-white shadow-md shadow-purple-800 focus:outline-none focus:ring-2 focus:ring-pink-400"
-        aria-label="Your name"
       />
 
       <label htmlFor="email" className="w-full text-lg mb-1 text-fuchsia-200 font-semibold">
@@ -47,22 +47,21 @@ const ContactForm: React.FC = () => {
         required
         maxLength={100}
         placeholder="your-email@email.com"
+        autoComplete="email"
         className="bg-gray-700 rounded-md border-2 border-fuchsia-200 mb-3 p-2 w-full text-lg text-white shadow-md shadow-purple-800 focus:outline-none focus:ring-2 focus:ring-pink-400"
-        aria-label="Your email address"
       />
       <ValidationError prefix="Email" field="email" errors={state.errors} />
 
       <label htmlFor="message" className="w-full text-lg mb-1 text-fuchsia-200 font-semibold">
         Message
       </label>
-      <textarea
+     <textarea
         id="message"
         name="message"
         required
         maxLength={500}
         placeholder="What do you want to build together?"
         className="bg-gray-700 rounded-md border-2 border-fuchsia-200 mb-5 p-2 w-full h-40 text-lg text-white shadow-md shadow-purple-800 focus:outline-none focus:ring-2 focus:ring-pink-400 resize-none"
-        aria-label="Your message"
       />
       <ValidationError prefix="Message" field="message" errors={state.errors} />
 
