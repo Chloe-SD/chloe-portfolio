@@ -22,6 +22,7 @@ html {
 }
 
 body {
+  background: #181825; /* fallback color to use before image is loaded - less jarring color change */
   background-image: url("../public/cmore1.jpg");
   background-size: cover;
   background-position: center;
