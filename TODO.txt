@@ -1,0 +1,17 @@
+-convert to TS
+-Consistent file taming (.tsx)
+-Organize Components
+
+
+_Accessibility
+    -ARIA labels, keyboard nav, semantic HTML
+-Dark / Light mode toggle
+-More motion / animation
+- Responsive improvements (sticky nav, improved touch targets)
+-Performance
+    -Optimize images (lazy loading)
+
+Ideas:
+-Project filter / search?
+-Testimonials or blog
+-SEO & metadada
