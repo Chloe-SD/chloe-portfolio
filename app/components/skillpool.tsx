@@ -183,19 +183,25 @@ const FloatingSkills: React.FC = () => {
     return () => clearInterval(intervalId);
   }, [containerSize]);
 
-  // --- Simplified grid math ---
-  const cardSize = getCardSize();
-  const selectedSkills = selectedCategory === null ? [] : skills.filter(skill => skill.category === selectedCategory);
-  const totalSelected = selectedSkills.length;
-  // Use Math.ceil(sqrt(n)) for columns, then fill rows
-  const gridColumns = totalSelected > 0 ? Math.ceil(Math.sqrt(totalSelected)) : 1;
-  const gridRows = totalSelected > 0 ? Math.ceil(totalSelected / gridColumns) : 1;
-  const gridWidth = cardSize * gridColumns * 1.07;
-  const gridHeight = cardSize * gridRows * 1.07;
-  const offset = {
-    x: (containerSize.width - gridWidth) / 2,
-    y: (containerSize.height - gridHeight) / 2,
-  };
+  // --- Responsive grid math ---
+const cardSize = getCardSize();
+const selectedSkills = selectedCategory === null ? [] : skills.filter(skill => skill.category === selectedCategory);
+const totalSelected = selectedSkills.length;
+
+// Responsive grid columns: 2 columns on mobile, auto-fit on larger screens
+let gridColumns: number;
+if (windowWidth <= 640) {
+  gridColumns = 2; // 2 columns on mobile
+} else {
+  gridColumns = totalSelected > 0 ? Math.ceil(Math.sqrt(totalSelected)) : 1;
+}
+const gridRows = totalSelected > 0 ? Math.ceil(totalSelected / gridColumns) : 1;
+const gridWidth = cardSize * gridColumns * 1.07;
+const gridHeight = cardSize * gridRows * 1.07;
+const offset = {
+  x: (containerSize.width - gridWidth) / 2,
+  y: (containerSize.height - gridHeight) / 2,
+};
 
   // Responsive icon/text size
   const iconSize = windowWidth <= 640 ? 'text-4xl' : windowWidth <= 1024 ? 'text-5xl' : 'text-7xl';
