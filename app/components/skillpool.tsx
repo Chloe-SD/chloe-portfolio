@@ -17,7 +17,9 @@ import SqliteOriginal from "react-devicons/sqlite/original";
 import IconPostgresql from "react-devicons/postgresql/original";
 import AzureOriginal from "react-devicons/azure/original";
 import DockerOriginal from "react-devicons/docker/original";
-import VercelOriginal from "react-devicons/vercel/original";
+import { RiVercelLine } from "react-icons/ri";
+import { FaAws } from "react-icons/fa";
+
 
 // --- Types ---
 type Skill = {
@@ -74,7 +76,9 @@ const skillIcons: Record<string, React.ReactNode> = {
   "PostgreSQL": <IconPostgresql />,
   "Azure": <AzureOriginal />,
   "Docker": <DockerOriginal />,
-  "Vercel": <VercelOriginal />,
+  "Vercel": <RiVercelLine />,
+  "AWS": <FaAws className='text-black'/>,
+  //".NET MAUI": <??? />, // Placeholder, replace with actual .
 };
 
 const categories = Array.from(new Set(skills.map(skill => skill.category)));
@@ -209,8 +213,8 @@ const offset = {
 
   return (
     <div className="flex flex-col h-full w-full select-none">
-      <div className="flex-none p-4 bg-slate-900 bg-opacity-50 rounded-t-lg border-t-2 border-x-2 border-fuchsia-200">
-        <div className="flex flex-wrap justify-center gap-2">
+      <div className="flex-none bg-slate-900 bg-opacity-50 rounded-t-lg border-t-2 border-x-2 border-fuchsia-200">
+        <div className="flex flex-wrap justify-center gap-2 mt-4">
           {categories.map(category => (
             <button
               key={category}
