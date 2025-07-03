@@ -1,79 +1,79 @@
-"use client";
-import React from "react";
-import { useForm, ValidationError } from "@formspree/react";
+"use client"
+import React from 'react';
+import { useForm, ValidationError } from '@formspree/react';
 
-const FORM_ID = "mqazjbad";
-
-const ContactForm: React.FC = () => {
-  const [state, handleSubmit] = useForm(FORM_ID);
-
+function ContactForm() {
+  const [state, handleSubmit] = useForm("mqazjbad");
   if (state.succeeded) {
-    return (
-      <div className="flex flex-col items-center justify-center min-h-[200px]">
-        <p className="text-xl text-green-400 font-semibold mb-2">Thanks for your message!</p>
-        <p className="text-gray-300">I&apos;ll get back to you soon.</p>
-      </div>
-    );
+      return (
+        <div className="text-center">
+          <h3 className="text-2xl font-semibold text-pink-400 mb-4">Message Sent!</h3>
+          <p className="text-lg text-gray-300">Thanks for reaching out. I'll get back to you within 24 hours.</p>
+        </div>
+      );
   }
-
   return (
-    <form
-      name="contactForm"
-      onSubmit={handleSubmit}
-      className="flex flex-col items-center justify-center w-full max-w-2xl bg-slate-900 bg-opacity-60 p-6 rounded-lg shadow-lg mx-auto"
-      autoComplete="off"
-    >
-      <label htmlFor="name" className="w-full text-lg mb-1 text-fuchsia-200 font-semibold">
+    <form name="contactForm" onSubmit={handleSubmit}
+    className='flex flex-grow flex-col self-center items-center justify-center'>
+      <label htmlFor='name' className='w-full text-lg font-medium mb-2'>
         Name
       </label>
       <input
         id="name"
-        type="text"
+        type="name" 
         name="name"
         required
         maxLength={30}
-        placeholder="Name"
-        autoComplete="name"
-        className="bg-gray-700 rounded-md border-2 border-fuchsia-200 mb-3 p-2 w-full text-lg text-white shadow-md shadow-purple-800 focus:outline-none focus:ring-2 focus:ring-pink-400"
+        placeholder='Your name'
+        className='bg-gray-500 bg-opacity-80 rounded-md border-2 border-fuchsia-200 mb-4 p-3
+        w-full text-lg placeholder-gray-300 focus:bg-opacity-100 transition-all
+        shadow-md shadow-purple-800 focus:outline-none focus:ring-2 focus:ring-pink-400'
       />
-
-      <label htmlFor="email" className="w-full text-lg mb-1 text-fuchsia-200 font-semibold">
+      <label htmlFor="email" className='w-full text-lg font-medium mb-2'>
         Email Address
       </label>
       <input
         id="email"
-        type="email"
+        type="email" 
         name="email"
         required
         maxLength={100}
-        placeholder="your-email@email.com"
-        autoComplete="email"
-        className="bg-gray-700 rounded-md border-2 border-fuchsia-200 mb-3 p-2 w-full text-lg text-white shadow-md shadow-purple-800 focus:outline-none focus:ring-2 focus:ring-pink-400"
+        placeholder='your.email@company.com'
+        className='bg-gray-500 bg-opacity-80 rounded-md border-2 border-fuchsia-200 mb-4 p-3
+        w-full text-lg placeholder-gray-300 focus:bg-opacity-100 transition-all
+        shadow-md shadow-purple-800 focus:outline-none focus:ring-2 focus:ring-pink-400'
       />
-      <ValidationError prefix="Email" field="email" errors={state.errors} />
-
-      <label htmlFor="message" className="w-full text-lg mb-1 text-fuchsia-200 font-semibold">
-        Message
+      <ValidationError 
+        prefix="Email" 
+        field="email"
+        errors={state.errors}
+      />
+      <label htmlFor='message' className='w-full text-lg font-medium mb-2'>
+        Project Details
       </label>
-     <textarea
+      <textarea
         id="message"
         name="message"
         required
         maxLength={500}
-        placeholder="What do you want to build together?"
-        className="bg-gray-700 rounded-md border-2 border-fuchsia-200 mb-5 p-2 w-full h-40 text-lg text-white shadow-md shadow-purple-800 focus:outline-none focus:ring-2 focus:ring-pink-400 resize-none"
+        placeholder='Tell me about your project, timeline, or questions about my work...'
+        className='bg-gray-500 bg-opacity-80 rounded-md border-2 border-fuchsia-200 mb-6 p-3
+        w-full h-40 text-lg placeholder-gray-300 focus:bg-opacity-100 transition-all resize-none
+        shadow-md shadow-purple-800 focus:outline-none focus:ring-2 focus:ring-pink-400'
       />
-      <ValidationError prefix="Message" field="message" errors={state.errors} />
-
-      <button
-        type="submit"
-        disabled={state.submitting}
-        className="border-2 border-fuchsia-200 rounded-md p-2 m-2 w-40 bg-pink-500 hover:bg-pink-600 font-semibold text-lg shadow-md shadow-purple-800 transition-colors disabled:opacity-60"
-      >
-        {state.submitting ? "Sending..." : "Submit"}
+      <ValidationError 
+        prefix="Message" 
+        field="message"
+        errors={state.errors}
+      />
+      <button type="submit" disabled={state.submitting} className='border-2 border-fuchsia-200
+      rounded-md p-3 w-48 bg-pink-500 hover:bg-pink-600 font-semibold text-lg
+      shadow-md shadow-purple-800 transition-all hover:shadow-lg hover:shadow-purple-700
+      disabled:opacity-50 disabled:cursor-not-allowed'>
+        {state.submitting ? 'Sending...' : 'Send Message'}
       </button>
     </form>
   );
-};
+}
 
 export default ContactForm;
