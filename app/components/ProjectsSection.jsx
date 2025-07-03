@@ -15,18 +15,6 @@ import qdAbout from '../../public/quantumDice/qdAbout.png';
 import qdAbout2 from '../../public/quantumDice/qdAbout2.png';
 import qdProbability from '../../public/quantumDice/qdProbability.png';
 
-//mechanic shop images
-import shop1 from '../../public/mechanicShop/shop1.png';
-import shop2 from '../../public/mechanicShop/shop2.png';
-import shop3 from '../../public/mechanicShop/shop3.png';
-import shop4 from '../../public/mechanicShop/shop4.png';
-import shop5 from '../../public/mechanicShop/shop5.png';
-
-//travel agency images
-import agency1 from '../../public/travelAgency/agency1.png';
-import agency2 from '../../public/travelAgency/agency2.png';
-import agency3 from '../../public/travelAgency/agency3.png';
-import agency4 from '../../public/travelAgency/agency4.png';
 
 //astute accounting images
 import aa1 from '../../public/astuteAccounting/aa1.png';
