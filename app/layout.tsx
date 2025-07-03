@@ -1,24 +1,35 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Space_Grotesk, Poppins } from "next/font/google";
 import "./globals.css";
-import { Analytics } from '@vercel/analytics/next'; // for vercel analytics
+import { Analytics } from '@vercel/analytics/next';
 
-const inter = Inter({ subsets: ["latin"] });
+const spaceGrotesk = Space_Grotesk({ 
+  subsets: ["latin"],
+  variable: '--font-display',
+  display: 'swap'
+});
+
+const poppins = Poppins({ 
+  subsets: ["latin"],
+  weight: ['300', '400', '500', '600', '700'],
+  variable: '--font-sans',
+  display: 'swap'
+});
 
 export const metadata: Metadata = {
   title: "Chloe Nibali - Developer",
-  description: "Portfolio of Chloe Nibali",
+  description: "Security-focused full-stack developer",
   openGraph: {
-    title: 'Chloe - Web & Mobile Developer',
-    description: 'Portfolio of Chloe, web and mobile developer bringing innovative ideas to life.',
+    title: 'Chloe Nibali - Full-Stack Developer',
+    description: 'Security-focused developer with live production applications and client experience.',
     url: 'https://codebychloe.com',
-    siteName: 'Chloe\'s Portfolio',
+    siteName: 'Chloe Nibali Portfolio',
     images: [
       {
         url: 'https://codebychloe.com/socialShare.png', 
         width: 1200,
         height: 630,
-        alt: 'Chloe\'s Portfolio',
+        alt: 'Chloe Nibali - Full-Stack Developer Portfolio',
       }
     ],
     locale: 'en_US',
@@ -26,12 +37,11 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Chloe - Full-Stack Developer',
-    description: 'Portfolio of Chloe, Full-Stack Software Developer.',
+    title: 'Chloe Nibali - Full-Stack Developer',
+    description: 'Security-focused developer with live production applications.',
     images: ['https://codebychloe.com/socialShare.png'],
   },
 };
-
 
 export default function RootLayout({
   children,
@@ -40,14 +50,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <head>
-        <link
-          rel="preload"
-          as="image"
-          href="/cmore1.jpg"
-        />
-      </head>
-      <body className={inter.className}>
+      <body className={`${spaceGrotesk.variable} ${poppins.variable} font-sans`}>
         {children}
         <Analytics />
       </body>
