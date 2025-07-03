@@ -8,7 +8,7 @@ function ContactForm() {
       return (
         <div className="text-center">
           <h3 className="text-2xl font-semibold text-pink-400 mb-4">Message Sent!</h3>
-          <p className="text-lg text-gray-300">Thanks for reaching out. I'll get back to you within 24 hours.</p>
+          <p className="text-lg text-gray-300">Thanks for reaching out. I&apos;ll get back to you within 24 hours.</p>
         </div>
       );
   }
