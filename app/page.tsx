@@ -25,18 +25,25 @@ export default function Home() {
             
             <div className="mb-8 text-center max-w-4xl">
               <p className="text-lg md:text-xl lg:text-2xl text-gray-300 mb-6 font-medium">
-                Security-focused developer with <span className="text-pink-400 font-semibold">three live applications</span> serving real users
+                Security-focused developer with{' '}
+                <a 
+                  href="#projects" 
+                  className="text-pink-400 font-semibold hover:text-pink-300 transition-colors underline decoration-pink-400 hover:decoration-pink-300 md:no-underline md:hover:no-underline cursor-pointer"
+                >
+                  three live applications
+                </a>{' '}
+                serving real users
               </p>
               
-              {/* LIVE LINKS */}
-              <div className="flex flex-wrap justify-center gap-4 mb-8">
+              {/* LIVE LINKS - DESKTOP ONLY */}
+              <div className="hidden md:flex flex-wrap justify-center gap-4 mb-8">
                 <a 
                   href="https://meetmoment-webapp.vercel.app/" 
                   target="_blank" 
                   rel="noopener noreferrer"
                   className="flex items-center gap-2 bg-pink-500 hover:bg-pink-600 text-white 
-                           px-4 py-2 rounded-md transition-colors border-2 border-fuchsia-200 
-                           shadow-md shadow-purple-800 font-medium"
+                          px-4 py-2 rounded-md transition-colors border-2 border-fuchsia-200 
+                          shadow-md shadow-purple-800 font-medium"
                 >
                   📆 MeetMoment
                 </a>
@@ -45,8 +52,8 @@ export default function Home() {
                   target="_blank" 
                   rel="noopener noreferrer"
                   className="flex items-center gap-2 bg-slate-700 hover:bg-slate-600 text-white 
-                           px-4 py-2 rounded-md transition-colors border-2 border-fuchsia-200 
-                           shadow-md shadow-purple-800 font-medium"
+                          px-4 py-2 rounded-md transition-colors border-2 border-fuchsia-200 
+                          shadow-md shadow-purple-800 font-medium"
                 >
                   🎲 Quantum Dice Simulator
                 </a>
@@ -55,27 +62,27 @@ export default function Home() {
                   target="_blank" 
                   rel="noopener noreferrer"
                   className="flex items-center gap-2 bg-gray-700 hover:bg-gray-600 text-white 
-                           px-4 py-2 rounded-md transition-colors border-2 border-fuchsia-200 
-                           shadow-md shadow-purple-800 font-medium"
+                          px-4 py-2 rounded-md transition-colors border-2 border-fuchsia-200 
+                          shadow-md shadow-purple-800 font-medium"
                 >
                   📒 Astute Accounting
                 </a>
               </div>
             </div>
 
-            {/* KEY DIFFERENTIATORS */}
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12 max-w-4xl text-center">
-              <div className="bg-slate-800 bg-opacity-60 p-4 rounded-lg border border-fuchsia-200">
-                <h3 className="text-pink-400 font-semibold mb-2 font-display">Cross-Platform Architecture</h3>
-                <p className="text-sm text-gray-300">Web & mobile apps sharing unified backends</p>
+            {/* KEY DIFFERENTIATORS - RESPONSIVE GRID */}
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6 mb-12 max-w-4xl text-center w-full px-2">
+              <div className="bg-slate-800 bg-opacity-60 p-3 md:p-4 rounded-lg border border-fuchsia-200">
+                <h3 className="text-pink-400 font-semibold mb-2 font-display text-sm md:text-base">Cross-Platform Architecture</h3>
+                <p className="text-xs md:text-sm text-gray-300">Web & mobile apps sharing unified backends</p>
               </div>
-              <div className="bg-slate-800 bg-opacity-60 p-4 rounded-lg border border-fuchsia-200">
-                <h3 className="text-pink-400 font-semibold mb-2 font-display">Enterprise Security</h3>
-                <p className="text-sm text-gray-300">RBAC, JWT authentication, audit trails</p>
+              <div className="bg-slate-800 bg-opacity-60 p-3 md:p-4 rounded-lg border border-fuchsia-200">
+                <h3 className="text-pink-400 font-semibold mb-2 font-display text-sm md:text-base">Enterprise Security</h3>
+                <p className="text-xs md:text-sm text-gray-300">RBAC, JWT authentication, audit trails</p>
               </div>
-              <div className="bg-slate-800 bg-opacity-60 p-4 rounded-lg border border-fuchsia-200">
-                <h3 className="text-pink-400 font-semibold mb-2 font-display">Client Experience</h3>
-                <p className="text-sm text-gray-300">8-month external project delivering production software</p>
+              <div className="bg-slate-800 bg-opacity-60 p-3 md:p-4 rounded-lg border border-fuchsia-200">
+                <h3 className="text-pink-400 font-semibold mb-2 font-display text-sm md:text-base">Client Experience</h3>
+                <p className="text-xs md:text-sm text-gray-300">8-month external project delivering production software</p>
               </div>
             </div>
 
