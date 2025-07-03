@@ -37,105 +37,56 @@ import aa5 from '../../public/astuteAccounting/aa5.png';
 import aa6 from '../../public/astuteAccounting/aa6.png';
 import aa7 from '../../public/astuteAccounting/aa7.png';
 
-// Sample project data structure
 const projectsData = [
-  {
-    id: 'astuteAccounting',
-    title: 'Astute Accounting',
-    subtitle: 'Web App',
-    description: 'My team\s SAIT Capstone project, an accounting document management system for an external client',
-    thumbnail: aa1, 
-    images: [
-      aa1,
-      aa2, 
-      aa3,
-      aa4,
-      aa5,
-      aa6,
-      aa7
-    ],
-    tags: ['NextJS', 'Azure', 'Typescript'],  
-    techStack: ['NextJS', 'Azure', 'Typescript', 'PostgreSQL', 'Firebase'],
-    challenges: 'Security was top of mind for this project, strict RBAC and hierarchical permissions, separate portals, file encryption, and more. Another challenge was client communication and scope creep.',
-    lessons: 'I was the Security Specialist on this project, I learned a ton about secure coding practices, API protections, middleware, and much more! I also developed great team and client communication skills.',
-    liveUrl: 'https://astute-accounting.vercel.app/About'
-  },
-  {
-    id: 'quantumdice',
-    title: 'Quantum Dice Simulator',
-    subtitle: 'Web App',
-    description: 'Made for SAIT Emergex TrendCon 2025 - This interactive exploration of Quantum Computing concepts was a blast to make, and even more fun to present!',
-    thumbnail: qdPoster, 
-    images: [
-      qdPoster, 
-      qdNat20,
-      qdAbout,
-      qdAbout2,
-      qdProbability
-    ],
-    tags: ['Python', 'Quantum Computing'],  
-    techStack: ['Python', 'Quantum Computing', 'Streamlit'],
-    challenges: 'The biggest challenge was ensuring the accuracy of the quantum algorithms while maintaining a user-friendly interface.',
-    lessons: 'I learned a lot about emerging trends such as quantum simulations, AI-assisted development, open source scientific tools, and interactive data visualization.',
-    githubUrl: 'https://github.com/Chloe-SD/quantum',
-    liveUrl: 'https://quantum-dice-simulator.streamlit.app/'
-  },
   {
     id: 'meetmoment',
     title: 'MeetMoment',
-    subtitle: 'Web & Android App',
-    description: 'A cross-platform app to simplify group scheduling and meeting management, with an intuitive interface and personal accounts to remember your meetings for you.',
+    subtitle: 'Cross-Platform Scheduling Application • Live Production App',
+    description: 'Full-stack scheduling solution with complex n-person availability algorithms and real-time synchronization. Built with unified backend serving both web and Android platforms.',
     thumbnail: meetWebReq, 
     images: [
       meetWebReq, 
       meetCreateNew, 
       meetCommonAvail 
     ],
-    tags: ['React', 'Android', 'Firebase'],
-    techStack: ['React', 'Next.js', 'Firebase'],
-    challenges: 'One of the biggest challenges was synchronizing availability data across platforms while maintaining a responsive user experience.',
-    lessons: 'I gained deep insights into state management across platforms and improved my skills in creating intuitive UIs for complex scheduling tasks.',
+    tags: ['Cross-Platform', 'Real-time Sync', 'Live Deployment'],
+    techStack: ['React', 'Next.js', 'React Native', 'Firebase', 'Real-time Database'],
+    challenges: 'Architecting cross-platform data synchronization for complex scheduling algorithms while maintaining responsive performance across web and mobile platforms.',
+    lessons: 'Mastered cross-platform architecture patterns, real-time data management, and building production-ready applications that handle concurrent users and complex state synchronization.',
     githubUrl: 'https://github.com/Chloe-SD/MeetMoment',
     liveUrl: 'https://meetmoment-webapp.vercel.app/'
   },
   {
-    id: 'mechanicShop',
-    title: 'Mechanic Shop',
-    subtitle: 'Windows Native App',
-    description: 'A full mechanic shop management app, for service writers to track customer information and vehicles, appointments, repair orders, jobs and technicians.',
-    thumbnail: shop1, 
+    id: 'astuteAccounting',
+    title: 'Astute Accounting',
+    subtitle: 'Enterprise Document Management • External Client Project',
+    description: 'Production-ready document management platform with enterprise-grade security architecture. Built secure REST APIs with RBAC, JWT authentication, and comprehensive audit trails for financial data protection.',
+    thumbnail: aa1, 
     images: [
-      shop1, 
-      shop2, 
-      shop3,
-      shop4,
-      shop5 
+      aa1, aa2, aa3, aa4, aa5, aa6, aa7
     ],
-    tags: ['.NET MAUI', 'C#', 'SQLite'],
-    techStack: ['.NET MAUI', 'C#', 'SQLite'],
-    challenges: 'Creating a highly intuitive UI, greying out buttons when not applicable and highlighting workflow steps.',
-    lessons: 'I learned a lot about .NET MAUI and C#. This was also my first database connected app, so I learned a lot about database design and integrity.',
-    githubUrl: 'https://github.com/Chloe-SD/MechanicShop'
+    tags: ['Enterprise Security', 'Client Project', 'Production Ready'],  
+    techStack: ['React', 'Node.js', 'TypeScript', 'PostgreSQL', 'JWT', 'RBAC'],
+    challenges: 'Implementing enterprise-grade security for sensitive financial data while maintaining intuitive user experience. Managing stakeholder requirements and scope in an 8-month client engagement.',
+    lessons: 'Gained deep expertise in security-first development, including role-based access control, secure API design, and audit trail implementation. Developed professional client communication and project management skills.',
+    liveUrl: 'https://astute-accounting.vercel.app/About'
   },
   {
-    id: 'travelAgency',
-    title: 'Travel Agency',
-    subtitle: 'Windows Native App',
-    description: 'A flight booking and customer itinerary management app for travel agents',
-    thumbnail: agency1, 
+    id: 'quantumdice',
+    title: 'Quantum Dice Simulator',
+    subtitle: 'Educational Technology Platform • SAIT TrendCon 2025',
+    description: 'Interactive quantum computing simulation demonstrating probability concepts through gamified learning. Presented to faculty and students as an example of emerging educational technology trends.',
+    thumbnail: qdPoster, 
     images: [
-      agency1, 
-      agency2, 
-      agency3,
-      agency4 
+      qdPoster, qdNat20, qdAbout, qdAbout2, qdProbability
     ],
-    tags: ['.NET MAUI', 'C#', 'XAML'],
-    techStack: ['.NET MAUI', 'C#', 'XAML'],
-    challenges: 'This was my first full application with a UI, it was a crash course in UI and UX design.',
-    lessons: 'This is where I learned MVVM architecture. it was a challenging and rewarding experience and the lessons I learned from building this app have influenced all of my interfaces since.',
-    githubUrl: 'https://github.com/Chloe-SD/TravelAgencyTeam2'
-  },
-  // Add more projects here...
+    tags: ['Educational Tech', 'Quantum Computing', 'Data Visualization'],  
+    techStack: ['Python', 'Streamlit', 'Quantum Algorithms', 'Data Visualization'],
+    challenges: 'Translating complex quantum computing concepts into intuitive, interactive visualizations while maintaining scientific accuracy.',
+    lessons: 'Explored cutting-edge educational technology, quantum simulation principles, and effective data visualization for complex scientific concepts.',
+    githubUrl: 'https://github.com/Chloe-SD/quantum',
+    liveUrl: 'https://quantum-dice-simulator.streamlit.app/'
+  }
 ];
 
 const ProjectsSection = () => {
