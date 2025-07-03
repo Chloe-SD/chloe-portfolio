@@ -3,43 +3,37 @@ import Media from './Media';
 import { Menu, X } from 'lucide-react';
 
 const Header = () => {
-    const [isMenuOpen, setIsMenuOpen] = useState(false); // for closing menu on mobile
-    const [activeSection, setActiveSection] = useState(''); // for highlighting current sections link
-    const [isCompact, setIsCompact] = useState(false); // for scaling down header outside of welcome section
+    const [isMenuOpen, setIsMenuOpen] = useState(false);
+    const [activeSection, setActiveSection] = useState('');
+    const [isCompact, setIsCompact] = useState(false);
 
-    // hook sets header values on mount, and listens for scroll
     useEffect(() => {
         const handleScroll = () => {
             const sections = ['welcome', 'about', 'projects', 'contact'];
-            const scrollPosition = window.scrollY + 100; // 100 to account for header height
+            const scrollPosition = window.scrollY + 100;
 
-            for (const section of sections) { // iterate through each section ID
+            for (const section of sections) {
                 const element = document.getElementById(section);
-                // Check if scroll position is within the section
                 if (element && scrollPosition >= element.offsetTop && scrollPosition < element.offsetTop + element.offsetHeight) {
-                    // set the active selection to the section currently displayed
                     setActiveSection(section);
                     break;
                 }
             }
-            setIsCompact(window.scrollY > 400); // Change to compact after scrolling 100px
+            setIsCompact(window.scrollY > 400);
         };
-        // listener for scroll actions.
         window.addEventListener('scroll', handleScroll);
         return () => window.removeEventListener('scroll', handleScroll);
     }, []);
 
-    // for returning to welcome section when title is clicked
     const scrollToTop = () => {
         window.scrollTo({ top: 0, behavior: 'smooth' });
     };
 
-    // wrapper for section links. cleaner than copy-paste values for each one. 
     const NavLink = ({ href, children }) => (
         <li>
             <a
                 href={href}
-                className={`transition-colors text-lg md:text-xl px-2 py-1 rounded
+                className={`transition-colors text-lg md:text-xl px-2 py-1 rounded font-medium
                 ${activeSection === href.slice(1) ? 'text-fuchsia-400' : 'text-white hover:text-pink-300'}`}
                 onClick={() => setIsMenuOpen(false)}
             >
@@ -53,7 +47,7 @@ const Header = () => {
             ${isCompact ? 'py-2' : 'py-4 md:py-6'}`}>
             <div className='container mx-auto px-4 flex justify-between items-center md:w-3/4'>
                 <h1 
-                    className={`font-semibold text-fuchsia-200 cursor-pointer transition-all duration-300
+                    className={`font-display font-bold text-fuchsia-200 cursor-pointer transition-all duration-300
                     ${isCompact ? 'text-xl md:text-2xl' : 'text-2xl md:text-4xl'}`}
                     onClick={scrollToTop}
                 >
