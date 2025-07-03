@@ -100,7 +100,7 @@ const SkillCard: React.FC<SkillCardProps> = ({
   skill, isSelected, position, index, gridPos, cardSize, offset, iconSize, textSize
 }) => (
   <motion.div
-    className={`absolute ${cardSize === 112 ? 'w-28 h-28' : cardSize === 144 ? 'w-36 h-36' : 'w-48 h-48'} p-2 rounded-lg shadow-md flex flex-col items-center justify-center ${
+    className={`absolute ${cardSize === 112 ? 'w-28 h-28' : cardSize === 144 ? 'w-36 h-36' : 'w-48 h-48'} rounded-lg shadow-md flex flex-col items-center justify-center ${
       isSelected 
         ? 'bg-slate-700 text-white z-10 border-2 border-fuchsia-200' 
         : 'bg-gray-500 bg-opacity-50 text-white'
@@ -138,28 +138,35 @@ const FloatingSkills: React.FC = () => {
   };
 
   useEffect(() => {
-    const updateSize = () => {
-      setWindowWidth(window.innerWidth);
-      if (containerRef.current) {
-        const { width, height } = containerRef.current.getBoundingClientRect();
-        setContainerSize({ width, height });
-        setCardStates(skills.map(() => ({
-          position: {
-            x: Math.random() * (width - 100),
-            y: Math.random() * (height - 100),
-          },
-          velocity: {
-            x: (Math.random() - 0.5) * 4,
-            y: (Math.random() - 0.5) * 4,
-          },
-        })));
-      }
-    };
-
-    updateSize();
-    window.addEventListener('resize', updateSize);
-    return () => window.removeEventListener('resize', updateSize);
-  }, []);
+  const updateSize = () => {
+    setWindowWidth(window.innerWidth);
+    if (containerRef.current) {
+      const { width, height } = containerRef.current.getBoundingClientRect();
+      setContainerSize({ width, height });
+      
+      // Get the current card size, add padding, and account for 0.7 scale
+      const currentCardSize = windowWidth <= 640 ? 112 : windowWidth <= 1024 ? 144 : 192;
+      const cardWithPadding = currentCardSize + 16; // Account for p-2 padding
+      const scaledCardSize = cardWithPadding * 0.7; // Account for scale: 0.7
+      // When scaling from center, we need to offset by half the difference
+      const scaleOffset = (cardWithPadding - scaledCardSize) / 2;
+      
+      setCardStates(skills.map(() => ({
+        position: {
+          x: Math.random() * Math.max(0, width - scaledCardSize) - scaleOffset,
+          y: Math.random() * Math.max(0, height - scaledCardSize) - scaleOffset,
+        },
+        velocity: {
+          x: (Math.random() - 0.5) * 4,
+          y: (Math.random() - 0.5) * 4,
+        },
+      })));
+    }
+  };
+  updateSize();
+  window.addEventListener('resize', updateSize);
+  return () => window.removeEventListener('resize', updateSize);
+  }, [windowWidth]);
 
   const handleCategorySelect = (category: string) => {
     setSelectedCategory(prev => (prev === category ? null : category));
@@ -167,25 +174,42 @@ const FloatingSkills: React.FC = () => {
 
   // Animate floating cards
   useEffect(() => {
-    const animateFloatingCards = () => {
-      setCardStates(prevStates =>
-        prevStates.map(state => {
-          const newX = state.position.x + state.velocity.x;
-          const newY = state.position.y + state.velocity.y;
-          let newVelocityX = state.velocity.x;
-          let newVelocityY = state.velocity.y;
-          if (newX <= 0 || newX >= containerSize.width - 100) newVelocityX *= -1;
-          if (newY <= 0 || newY >= containerSize.height - 100) newVelocityY *= -1;
-          return {
-            position: { x: newX, y: newY },
-            velocity: { x: newVelocityX, y: newVelocityY },
-          };
-        })
-      );
-    };
-    const intervalId = setInterval(animateFloatingCards, 50);
-    return () => clearInterval(intervalId);
-  }, [containerSize]);
+  const animateFloatingCards = () => {
+    setCardStates(prevStates =>
+      prevStates.map(state => {
+        const currentCardSize = getCardSize();
+        const cardWithPadding = currentCardSize + 16; // Account for p-2 padding
+        const scaledCardSize = cardWithPadding * 0.62; // Account for scale: 0.7 (tweaked for better fit)
+        // When scaling from center, we need to offset by half the difference
+        const scaleOffset = (cardWithPadding - scaledCardSize) / 2;
+        
+        const newX = state.position.x + state.velocity.x;
+        const newY = state.position.y + state.velocity.y;
+        let newVelocityX = state.velocity.x;
+        let newVelocityY = state.velocity.y;
+        
+        // Use scaled card size for boundary detection, accounting for center scaling
+        const minX = -scaleOffset;
+        const maxX = containerSize.width - scaledCardSize - scaleOffset;
+        const minY = -scaleOffset;
+        const maxY = containerSize.height - scaledCardSize - scaleOffset;
+        
+        if (newX <= minX || newX >= maxX) newVelocityX *= -1;
+        if (newY <= minY || newY >= maxY) newVelocityY *= -1;
+        
+        return {
+          position: { 
+            x: Math.max(minX, Math.min(newX, maxX)),
+            y: Math.max(minY, Math.min(newY, maxY))
+          },
+          velocity: { x: newVelocityX, y: newVelocityY },
+        };
+      })
+    );
+  };
+  const intervalId = setInterval(animateFloatingCards, 50);
+  return () => clearInterval(intervalId);
+  }, [containerSize, windowWidth]);
 
   // --- Responsive grid math ---
 const cardSize = getCardSize();
@@ -246,7 +270,9 @@ const offset = {
         ref={containerRef}
         className="flex-grow relative overflow-hidden bg-slate-900
           bg-opacity-50 rounded-b-lg border-b-2 border-x-2 border-fuchsia-200"
-        style={{ minHeight: '300px' }}
+        style={{ 
+          minHeight: '300px',
+        }}
       >
         <AnimatePresence>
           {skills.map((skill, index) => {
