@@ -22,6 +22,7 @@ html {
 }
 
 body {
+  background: #181825; /* fallback color to use before image is loaded - less jarring color change */
   background-image: url("../public/cmore1.jpg");
   background-size: cover;
   background-position: center;
@@ -34,5 +35,16 @@ body {
     text-wrap: balance;
   }
 }
+
+/* This is to prevent fields from turning bright white when you use autofill on the contact form, it overrides browser default CSS for autofill  */
+input:-webkit-autofill,
+textarea:-webkit-autofill {
+  -webkit-box-shadow: 0 0 0 1000px #374151 inset !important; /* Tailwind's bg-gray-700 */
+  box-shadow: 0 0 0 1000px #374151 inset !important;
+  -webkit-text-fill-color: #fff !important;
+  color: #fff !important;
+  transition: background-color 5000s ease-in-out 0s;
+}
+
 
 
