@@ -36,7 +36,7 @@ export default function Home() {
             </p>
             
             {/* LIVE LINKS - DESKTOP ONLY TO SAVE MOBILE SPACE */}
-            <div className="hidden lg:flex flex-wrap justify-center gap-4 mb-8">
+            {/* <div className="hidden lg:flex flex-wrap justify-center gap-4 mb-8">
               <a 
                 href="https://meetmoment-webapp.vercel.app/" 
                 target="_blank" 
@@ -67,7 +67,7 @@ export default function Home() {
               >
                 📒 Secure Accounting DMS
               </a>
-            </div>
+            </div> */}
           </div>
 
           {/* TECHNICAL HIGHLIGHTS - MOBILE OPTIMIZED */}
@@ -84,7 +84,7 @@ export default function Home() {
             </div>
             <div className="bg-slate-800 bg-opacity-60 p-3 md:p-4 rounded-lg border border-fuchsia-200">
               <div className="text-lg md:text-xl mb-1 md:mb-2">🔐</div>
-              <h3 className="text-pink-400 font-semibold mb-1 md:mb-2 font-display text-xs md:text-base">Enterprise Security</h3>
+              <h3 className="text-pink-400 font-semibold mb-1 md:mb-2 font-display text-xs md:text-base">Security Focus</h3>
               <p className="text-xs md:text-sm text-gray-300">RBAC, JWT authentication, comprehensive audit trails</p>
             </div>
           </div>
