@@ -1,15 +1,13 @@
 'use client';
-import React, { useState } from 'react';
-import { ChevronDown } from 'lucide-react';
+import React from 'react';
 import Header from "./components/Header";
 import Footer from "./components/Footer";
-import FloatingSkills from './components/skillpool';
 import ContactForm from "./Contact";
 import ProjectsSection from "./components/ProjectsSection";
 import { motion, useReducedMotion } from 'framer-motion';
+import SkillsSection from './components/SkillsSection';
 
 export default function Home() {
-  const [menuOpen, setMenuOpen] = useState(false);
   const prefersReducedMotion = useReducedMotion();
 
   const fadeUp = {
@@ -29,7 +27,7 @@ export default function Home() {
       
       <main className="flex-grow flex flex-col pt-16 md:pt-20">
         {/* HERO SECTION */}
-        <section id="welcome" className="relative">
+        <section id="home" className="relative">
           <div className="mx-auto max-w-6xl px-4 py-16 lg:py-24 grid gap-8">
             <motion.h1
               variants={fadeIn}
@@ -128,32 +126,7 @@ export default function Home() {
         </section>
 
         {/* Skills */}
-        <section id="skills" className="border-t border-slate-200">
-          <div className="mx-auto max-w-6xl px-4 py-16">
-            <h2 className="text-2xl sm:text-3xl font-bold mb-6">Technical Skills</h2>
-            <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 ">
-              {[
-                { title: "Frontend", items: ["React", "Next.js", "React Native", "TailwindCSS"] },
-                { title: "Backend", items: ["Node.js", "REST APIs", "RBAC", "Auth"] },
-                { title: "Databases", items: ["PostgreSQL", "MySQL", "Firebase/Firestore"] },
-                { title: "Security", items: ["JWT", "Audit trails", "Input validation"] },
-                { title: "Cloud/DevOps", items: ["Azure", "AWS", "Docker", "CI/CD"] },
-                { title: "Practices", items: ["Accessibility", "Agile/SCRUM", "Testing"] },
-              ].map(b => (
-                <motion.div key={b.title} variants={fadeUp} initial="hidden" whileInView="show" viewport={{ once: true, amount: 0.2 }} 
-                className="rounded-3xl border border-fuchsia-400 p-5 bg-slate-800/50 backdrop-blur-sm ">
-                  <h3 className="font-semibold mb-3">{b.title}</h3>
-                  <ul className="flex flex-wrap gap-2">
-                    {b.items.map(i => (<li key={i} className="rounded-full border border-rose-200 px-3 py-1 text-sm ">{i}</li>))}
-                  </ul>
-                </motion.div>
-              ))}
-            </div>
-            <div className='h-5/6 mt-5'>
-              <FloatingSkills/>
-            </div>
-          </div>
-        </section>
+        <SkillsSection/>
 
         {/* Services */}
         <section id="services" className="border-t border-slate-200">
