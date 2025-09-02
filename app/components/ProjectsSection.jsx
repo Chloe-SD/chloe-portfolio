@@ -27,6 +27,21 @@ import aa7 from '../../public/astuteAccounting/aa7.png';
 
 const projectsData = [
   {
+    id: 'astuteAccounting',
+    title: 'Astute Accounting',
+    subtitle: 'Financial Document Management • External Client Project',
+    description: 'Production-ready document management platform with secure architecture. Built secure REST APIs with RBAC, JWT authentication, and comprehensive audit trails for financial data protection.',
+    thumbnail: aa1, 
+    images: [
+      aa1, aa2, aa3, aa4, aa5, aa6, aa7
+    ],
+    tags: ['Enterprise Security', 'Client Project', 'Production Ready'],  
+    techStack: ['React', 'Node.js', 'TypeScript', 'PostgreSQL', 'JWT', 'RBAC'],
+    challenges: 'Implementing the neccesary security for sensitive financial data while maintaining an intuitive user experience. Managing stakeholder requirements and scope in an 8-month client project.',
+    lessons: 'Gained solid understanding of security-first development, including role-based access control, secure API design, and heirarchical permission systems. Developed professional client communication and project management skills.',
+    liveUrl: 'https://astute-accounting.vercel.app/About'
+  },
+  {
     id: 'meetmoment',
     title: 'MeetMoment',
     subtitle: 'Cross-Platform Scheduling Application • Live Production App',
@@ -43,21 +58,6 @@ const projectsData = [
     lessons: 'Mastered cross-platform architecture patterns, real-time data management, and building production-ready applications that handle concurrent users and complex state synchronization.',
     githubUrl: 'https://github.com/Chloe-SD/MeetMoment',
     liveUrl: 'https://meetmoment-webapp.vercel.app/'
-  },
-  {
-    id: 'astuteAccounting',
-    title: 'Astute Accounting',
-    subtitle: 'Enterprise Document Management • External Client Project',
-    description: 'Production-ready document management platform with enterprise-grade security architecture. Built secure REST APIs with RBAC, JWT authentication, and comprehensive audit trails for financial data protection.',
-    thumbnail: aa1, 
-    images: [
-      aa1, aa2, aa3, aa4, aa5, aa6, aa7
-    ],
-    tags: ['Enterprise Security', 'Client Project', 'Production Ready'],  
-    techStack: ['React', 'Node.js', 'TypeScript', 'PostgreSQL', 'JWT', 'RBAC'],
-    challenges: 'Implementing enterprise-grade security for sensitive financial data while maintaining intuitive user experience. Managing stakeholder requirements and scope in an 8-month client engagement.',
-    lessons: 'Gained deep expertise in security-first development, including role-based access control, secure API design, and audit trail implementation. Developed professional client communication and project management skills.',
-    liveUrl: 'https://astute-accounting.vercel.app/About'
   },
   {
     id: 'quantumdice',
