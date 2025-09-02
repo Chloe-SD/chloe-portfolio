@@ -51,13 +51,13 @@ const Header = () => {
         <header className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 bg-slate-900 bg-opacity-95
             ${isCompact ? 'py-2' : 'py-4 md:py-6'}`}>
             <div className='container mx-auto px-4 flex justify-between items-center max-w-6xl'>
-                <h2 
+                <p 
                     className={`font-display font-bold text-fuchsia-200 cursor-pointer transition-all duration-300
                     ${isCompact ? 'text-xl md:text-2xl' : 'text-2xl md:text-4xl'}`}
                     onClick={scrollToTop}
                 >
                     <span className="bg-gradient-to-r from-rose-400 to-fuchsia-500 bg-clip-text text-transparent">Code by Chloe</span>
-                </h2>
+                </p>
                 
                 <button 
                     className="md:hidden text-white"
