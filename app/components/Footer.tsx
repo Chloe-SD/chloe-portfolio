@@ -3,35 +3,22 @@ import React from 'react';
 import Media from './Media';
 import { ChevronUp } from 'lucide-react';
 
-const Footer: React.FC = () => {
+const Footer = () => {
   const scrollToTop = () => {
-    window.scrollTo({
-      top: 0,
-      behavior: 'smooth'
-    });
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
   return (
-    <footer
-      className="p-4 md:p-6 mt-2 flex flex-col md:flex-row 
-      justify-between items-center space-y-4 md:space-y-0 
-      md:space-x-4 w-full md:w-3/4 self-center select-none"
-      role="contentinfo"
-    >
-      <div className='flex items-center justify-center space-x-2 w-full'>
-        <p className="text-center md:self-start" aria-label="Copyright">
-          &copy; Chloe Nibali 2025
-        </p>
+    <footer className="bg-slate-900/80 border-t border-slate-700 py-8">
+      <div className="container mx-auto px-4 max-w-6xl flex flex-col md:flex-row justify-between items-center">
+        <p className="text-slate-400 text-sm">© Chloe Nibali 2025</p>
         <button
-          aria-label="Scroll to top"
-          className='animate-bounce cursor-pointer self-center bg-transparent border-none p-0 m-0 focus:outline-none focus:ring-2 focus:ring-pink-400'
           onClick={scrollToTop}
+          className="mt-4 md:mt-0 text-slate-400 hover:text-rose-300 transition-colors"
+          aria-label="Scroll to top"
         >
           <ChevronUp size={24} />
         </button>
-      </div>
-      <div className="md:hidden">
-        <Media />
       </div>
     </footer>
   );
