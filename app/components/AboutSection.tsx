@@ -137,11 +137,11 @@ const AboutSection: React.FC = () => {
             </div>
 
             <div className="mt-3 text-sm text-slate-300">
-              {active === "default" ? "Portrait" : `${current.emoji} ${current.label}`}
+              {active === "default" ? "Chloe" : `${current.emoji} ${current.label}`}
               <span className="sr-only"> photo selected.</span>
             </div>
 
-            <div className="mt-1 text-xs text-slate-400">Tip: use ← / → to switch photos.</div>
+            {/* <div className="mt-1 text-xs text-slate-400">Tip: use ← / → to switch photos.</div> */}
           </div>
         </div>
       </div>
