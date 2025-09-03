@@ -1,79 +1,86 @@
-"use client"
-import React from 'react';
-import { useForm, ValidationError } from '@formspree/react';
+"use client";
+import { useForm, ValidationError } from "@formspree/react";
 
-function ContactForm() {
-  const [state, handleSubmit] = useForm("mqazjbad");
+export default function ContactForm() {
+  const [state, handleSubmit] = useForm("mqazjbad"); // ← your Formspree form ID
+
   if (state.succeeded) {
-      return (
-        <div className="text-center">
-          <h3 className="text-2xl font-semibold text-pink-400 mb-4">Message Sent!</h3>
-          <p className="text-lg text-gray-300">Thanks for reaching out. I&apos;ll get back to you within 24 hours.</p>
-        </div>
-      );
+    return (
+      <div
+        className="rounded-3xl border border-slate-200 dark:border-slate-800 p-8 text-center bg-white/70 dark:bg-slate-900/40 backdrop-blur-sm"
+        role="status"
+        aria-live="polite"
+      >
+        <h3 className="text-2xl font-semibold text-pink-600 dark:text-pink-300 mb-2">Message sent!</h3>
+        <p className="text-slate-700 dark:text-slate-300">Thanks for reaching out — I’ll reply within 1–2 business days.</p>
+      </div>
+    );
   }
+
   return (
-    <form name="contactForm" onSubmit={handleSubmit}
-    className='flex flex-grow flex-col self-center items-center justify-center'>
-      <label htmlFor='name' className='w-full text-lg font-medium mb-2'>
-        Name
-      </label>
-      <input
-        id="name"
-        type="name" 
-        name="name"
-        required
-        maxLength={30}
-        placeholder='Your name'
-        className='bg-gray-500 bg-opacity-80 rounded-md border-2 border-fuchsia-200 mb-4 p-3
-        w-full text-lg placeholder-gray-300 focus:bg-opacity-100 transition-all
-        shadow-md shadow-purple-800 focus:outline-none focus:ring-2 focus:ring-pink-400'
-      />
-      <label htmlFor="email" className='w-full text-lg font-medium mb-2'>
-        Email Address
-      </label>
-      <input
-        id="email"
-        type="email" 
-        name="email"
-        required
-        maxLength={100}
-        placeholder='your.email@company.com'
-        className='bg-gray-500 bg-opacity-80 rounded-md border-2 border-fuchsia-200 mb-4 p-3
-        w-full text-lg placeholder-gray-300 focus:bg-opacity-100 transition-all
-        shadow-md shadow-purple-800 focus:outline-none focus:ring-2 focus:ring-pink-400'
-      />
-      <ValidationError 
-        prefix="Email" 
-        field="email"
-        errors={state.errors}
-      />
-      <label htmlFor='message' className='w-full text-lg font-medium mb-2'>
-        Project Details
-      </label>
-      <textarea
-        id="message"
-        name="message"
-        required
-        maxLength={500}
-        placeholder='Tell me about your project, timeline, or questions about my work...'
-        className='bg-gray-500 bg-opacity-80 rounded-md border-2 border-fuchsia-200 mb-6 p-3
-        w-full h-40 text-lg placeholder-gray-300 focus:bg-opacity-100 transition-all resize-none
-        shadow-md shadow-purple-800 focus:outline-none focus:ring-2 focus:ring-pink-400'
-      />
-      <ValidationError 
-        prefix="Message" 
-        field="message"
-        errors={state.errors}
-      />
-      <button type="submit" disabled={state.submitting} className='border-2 border-fuchsia-200
-      rounded-md p-3 w-48 bg-pink-500 hover:bg-pink-600 font-semibold text-lg
-      shadow-md shadow-purple-800 transition-all hover:shadow-lg hover:shadow-purple-700
-      disabled:opacity-50 disabled:cursor-not-allowed'>
-        {state.submitting ? 'Sending...' : 'Send Message'}
-      </button>
+    <form
+      onSubmit={handleSubmit}
+      className="rounded-3xl border border-slate-200 dark:border-slate-800 p-6 grid gap-4 bg-white/70 dark:bg-slate-900/40 backdrop-blur-sm"
+      aria-describedby="contact-note"
+    >
+      {/* spam honeypot */}
+      <input type="text" name="_gotcha" className="hidden" tabIndex={-1} autoComplete="off" aria-hidden="true" />
+      {/* optional subject to tag submissions */}
+      <input type="hidden" name="subject" value="New inquiry from codebychloe.com" />
+
+      <div>
+        <label className="block text-sm font-medium mb-1" htmlFor="name">Name</label>
+        <input
+          id="name"
+          name="name"
+          type="text"
+          required
+          maxLength={60}
+          placeholder="Your name"
+          className="w-full rounded-lg border border-rose-200 dark:border-slate-700 bg-white dark:bg-slate-900 px-3 py-2"
+        />
+      </div>
+
+      <div>
+        <label className="block text-sm font-medium mb-1" htmlFor="email">Email</label>
+        <input
+          id="email"
+          name="email"
+          type="email"
+          required
+          maxLength={100}
+          placeholder="your.email@company.com"
+          className="w-full rounded-lg border border-rose-200 dark:border-slate-700 bg-white dark:bg-slate-900 px-3 py-2"
+        />
+        <ValidationError prefix="Email" field="email" errors={state.errors} className="mt-1 text-sm text-rose-600" />
+      </div>
+
+      <div>
+        <label className="block text-sm font-medium mb-1" htmlFor="message">Message</label>
+        <textarea
+          id="message"
+          name="message"
+          rows={4}
+          required
+          maxLength={1000}
+          placeholder="Tell me about your project, timeline, or questions about my work..."
+          className="w-full rounded-lg border border-rose-200 dark:border-slate-700 bg-white dark:bg-slate-900 px-3 py-2"
+        />
+        <ValidationError prefix="Message" field="message" errors={state.errors} className="mt-1 text-sm text-rose-600" />
+      </div>
+
+      <p id="contact-note" className="text-xs text-slate-500">Your info is used only to respond to your message. No marketing emails.</p>
+
+      <div className="flex items-center gap-3">
+        <button
+          type="submit"
+          disabled={state.submitting}
+          className="inline-flex items-center rounded-xl bg-slate-900 text-white dark:bg-white dark:text-slate-900 px-5 py-3 font-medium hover:opacity-90 disabled:opacity-60"
+        >
+          {state.submitting ? "Sending…" : "Send Message"}
+        </button>
+        
+      </div>
     </form>
   );
 }
-
-export default ContactForm;
