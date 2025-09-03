@@ -141,7 +141,7 @@ export default function ServicesSection() {
         >
           <p>All options come with a discovery call to better understand your specific business needs.</p>
           <p className="text-sm text-slate-400 mb-4">
-            Not sure which option fits your needs? Let's chat about your project.
+            Not sure which option fits your needs? Let&apos;s chat about your project.
           </p>
           <a 
             href="#contact"
