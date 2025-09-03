@@ -17,19 +17,19 @@ const poppins = Poppins({
 });
 
 export const metadata: Metadata = {
-  title: "Chloe Nibali - Developer",
+  title: "Chloe Nibali - Software Developer",
   description: "Security-focused full-stack developer",
   openGraph: {
     title: 'Chloe Nibali - Full-Stack Developer',
     description: 'Security-focused developer with live production applications and client experience.',
     url: 'https://codebychloe.com',
-    siteName: 'Chloe Nibali Portfolio',
+    siteName: 'Chloe Nibali -Software Developer',
     images: [
       {
         url: 'https://codebychloe.com/socialShare.png', 
         width: 1200,
         height: 630,
-        alt: 'Chloe Nibali - Full-Stack Developer Portfolio',
+        alt: 'Chloe Nibali - Software Developer Portfolio',
       }
     ],
     locale: 'en_US',
@@ -37,7 +37,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Chloe Nibali - Full-Stack Developer',
+    title: 'Chloe Nibali - Software Developer',
     description: 'Security-focused developer with live production applications.',
     images: ['https://codebychloe.com/socialShare.png'],
   },

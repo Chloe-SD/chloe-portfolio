@@ -69,9 +69,9 @@ const Header = () => {
                 <nav className={`md:block ${isMenuOpen ? 'block' : 'hidden'} 
                     absolute md:relative top-full left-0 right-0 md:top-auto bg-slate-900 md:bg-transparent`}>
                     <ul className="flex flex-col md:flex-row items-center md:space-x-4 py-4 md:py-0">
+                        <NavLink href="#about">About</NavLink>
                         <NavLink href="#projects">Projects</NavLink>
                         <NavLink href="#services">Services</NavLink>
-                        <NavLink href="#about">About</NavLink>
                         <NavLink href="#contact">Contact</NavLink>
                     </ul>
                 </nav>
