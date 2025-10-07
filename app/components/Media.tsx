@@ -1,5 +1,3 @@
-
-"use client";
 import React from "react";
 import { Github, Linkedin } from 'lucide-react';
 
@@ -14,7 +12,7 @@ const Media: React.FC = () => {
                 aria-label="Chloe's GitHub"
                 title="GitHub"
             >
-                <Github size={24} />
+                <Github size={24} aria-hidden="true" />
             </a>
             <a
                 href="https://linkedin.com/in/chloe-nibali"
@@ -24,7 +22,7 @@ const Media: React.FC = () => {
                 aria-label="Chloe's LinkedIn"
                 title="LinkedIn"
             >
-                <Linkedin size={24} />
+                <Linkedin size={24} aria-hidden="true" />
             </a>
             </div>
     );
