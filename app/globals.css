@@ -21,7 +21,7 @@ html {
   scroll-behavior: smooth;
 }
 
-h1, ul, span {
+h1, ul, span, p {
   user-select: none;
 }
 
