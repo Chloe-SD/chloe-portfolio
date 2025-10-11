@@ -28,7 +28,7 @@ export default function Home() {
       <div className='bg-slate-950 bg-opacity-70 min-h-screen flex flex-col'>
       <Header/>
       
-      <main className="flex-grow flex flex-col pt-16 md:pt-20">
+      <main id="main-content" className="flex-grow flex flex-col pt-16 md:pt-20">
         {/* HERO SECTION */}
         <section
             id="home"

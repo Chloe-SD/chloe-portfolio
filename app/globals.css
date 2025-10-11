@@ -21,6 +21,10 @@ html {
   scroll-behavior: smooth;
 }
 
+h1, ul, span {
+  user-select: none;
+}
+
 body {
   background: #181825; /* fallback color to use before image is loaded - less jarring color change */
   background-image: url("../public/cmore1.jpg");

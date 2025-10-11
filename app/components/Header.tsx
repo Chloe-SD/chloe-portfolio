@@ -2,7 +2,15 @@ import React, { useState, useEffect, useRef } from 'react';
 import { Menu, X } from 'lucide-react';
 import Media from './Media';
 
+// Constants used for navigation and sections
 const sections = ['home', 'projects', 'services', 'about', 'contact'];
+
+const navLinks = [
+  { href: "#about", label: "About" },
+  { href: "#projects", label: "Projects" },
+  { href: "#services", label: "Services" },
+  { href: "#contact", label: "Contact" },
+];
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -51,29 +59,32 @@ const Header = () => {
   useEffect(() => {
     if (!isMenuOpen) return;
 
-    const handleTab = (e: KeyboardEvent) => {
-      if (e.key !== 'Tab' || !menuRef.current) return;
+    const handleKeyDown = (e: KeyboardEvent) => {
+      // Focus trap
+      if (e.key === 'Tab' && menuRef.current) {
+        const focusableElements = menuRef.current.querySelectorAll(
+          'a[href], button:not([disabled])'
+        );
+        const firstElement = focusableElements[0] as HTMLElement;
+        const lastElement = focusableElements[focusableElements.length - 1] as HTMLElement;
 
-      const focusableElements = menuRef.current.querySelectorAll(
-        'a[href], button:not([disabled])'
-      );
-      const firstElement = focusableElements[0] as HTMLElement;
-      const lastElement = focusableElements[focusableElements.length - 1] as HTMLElement;
-
-      // Shift + Tab on first element -> go to last
-      if (e.shiftKey && document.activeElement === firstElement) {
-        e.preventDefault();
-        lastElement?.focus();
+        if (e.shiftKey && document.activeElement === firstElement) {
+          e.preventDefault();
+          lastElement?.focus();
+        } else if (!e.shiftKey && document.activeElement === lastElement) {
+          e.preventDefault();
+          firstElement?.focus();
+        }
       }
-      // Tab on last element -> go to first
-      else if (!e.shiftKey && document.activeElement === lastElement) {
-        e.preventDefault();
-        firstElement?.focus();
+      // Escape key
+      if (e.key === 'Escape') {
+        setIsMenuOpen(false);
+        buttonRef.current?.focus();
       }
     };
 
-    document.addEventListener('keydown', handleTab);
-    return () => document.removeEventListener('keydown', handleTab);
+    document.addEventListener('keydown', handleKeyDown);
+    return () => document.removeEventListener('keydown', handleKeyDown);
   }, [isMenuOpen]);
 
   // Click outside to close menu
@@ -97,26 +108,6 @@ const Header = () => {
     
     return () => document.removeEventListener('mousedown', handleClickOutside);
   }, [isMenuOpen]);
-
-  // Escape key to close menu
-  useEffect(() => {
-    const handleEscape = (event: KeyboardEvent) => {
-      if (event.key === 'Escape' && isMenuOpen) {
-        setIsMenuOpen(false);
-        buttonRef.current?.focus(); // Return focus to button
-      }
-    };
-
-    if (isMenuOpen) {
-      document.addEventListener('keydown', handleEscape);
-    }
-    
-    return () => document.removeEventListener('keydown', handleEscape);
-  }, [isMenuOpen]);
-
-  const closeMenu = () => {
-    setIsMenuOpen(false);
-  };
 
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -149,7 +140,7 @@ const Header = () => {
           ? 'text-fuchsia-400 bg-slate-800' 
           : 'text-white hover:text-pink-300 hover:bg-slate-800'
         }`}
-      onClick={closeMenu}
+      onClick={() => setIsMenuOpen(false)}
       tabIndex={isMenuOpen ? 0 : -1}
     >
       {children}
@@ -158,24 +149,35 @@ const Header = () => {
 
   return (
     <>
+      {/* Skip to main content link for accessibility */}
+      <a
+        href="#main-content"
+        className="absolute left-2 top-2 z-[100] bg-fuchsia-700 text-white px-4 py-2 rounded focus:outline-none focus:ring-2 focus:ring-fuchsia-400
+          sr-only focus:not-sr-only"
+        tabIndex={0}
+      >
+        Skip to main content
+      </a>
+      
       <header 
         className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 bg-slate-900 bg-opacity-95
           ${isCompact ? 'py-2' : 'py-4 md:py-6'}`}
       >
         <div className='container mx-auto px-4 flex justify-between items-center max-w-6xl'>
           {/* Logo */}
-          <h1 
+          <p 
             className={`font-display font-bold text-fuchsia-200 cursor-pointer transition-all duration-300
               ${isCompact ? 'text-xl md:text-2xl' : 'text-2xl md:text-4xl'}`}
             onClick={scrollToTop}
             role="button"
             tabIndex={0}
             onKeyDown={(e) => e.key === 'Enter' && scrollToTop()}
+            aria-label='Homepage - Scroll to top'
           >
             <span className="bg-gradient-to-r from-rose-400 to-fuchsia-500 bg-clip-text text-transparent">
               Code by Chloe
             </span>
-          </h1>
+          </p>
           
           {/* Mobile Menu Button */}
           <button 
@@ -192,10 +194,11 @@ const Header = () => {
           {/* Desktop Navigation */}
           <nav className="hidden md:block" aria-label="Main navigation">
             <ul className="flex items-center space-x-4">
-              <li><DesktopNavLink href="#about">About</DesktopNavLink></li>
-              <li><DesktopNavLink href="#projects">Projects</DesktopNavLink></li>
-              <li><DesktopNavLink href="#services">Services</DesktopNavLink></li>
-              <li><DesktopNavLink href="#contact">Contact</DesktopNavLink></li>
+              {navLinks.map((link, idx) => (
+                <li key={link.href}>
+                  <DesktopNavLink href={link.href}>{link.label}</DesktopNavLink>
+                </li>
+              ))}
             </ul>
           </nav>
 
@@ -218,16 +221,19 @@ const Header = () => {
       <nav
         ref={menuRef}
         id="mobile-menu"
-        className={`fixed top-[72px] left-0 right-0 bg-slate-900 z-40 md:hidden transition-transform duration-300 ease-in-out transform shadow-lg
+        className={`fixed top-[55px] left-0 right-0 bg-slate-900 z-40 md:hidden transition-transform duration-300 ease-in-out transform shadow-lg
           ${isMenuOpen ? 'translate-y-0 opacity-100' : '-translate-y-full opacity-0 pointer-events-none'}`}
         aria-label="Mobile navigation"
         aria-hidden={!isMenuOpen}
       >
-        <div className="py-2">
-          <MobileNavLink href="#about" isFirst>About</MobileNavLink>
-          <MobileNavLink href="#projects">Projects</MobileNavLink>
-          <MobileNavLink href="#services">Services</MobileNavLink>
-          <MobileNavLink href="#contact">Contact</MobileNavLink>
+        <div className="py-2 mt-5"> 
+          <ul>
+            {navLinks.map((link, idx) => (
+              <li key={link.href}>
+                <MobileNavLink href={link.href}>{link.label}</MobileNavLink>
+              </li>
+            ))}
+          </ul>
           
           {/* Mobile Social Media */}
           <div className="px-6 py-4 border-t border-slate-800 mt-2">
