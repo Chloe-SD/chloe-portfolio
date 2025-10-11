@@ -2,7 +2,7 @@
 import { useForm, ValidationError } from "@formspree/react";
 
 export default function ContactForm() {
-  const [state, handleSubmit] = useForm("mqazjbad"); // ← your Formspree form ID
+  const [state, handleSubmit] = useForm("mqazjbad"); // ← Formspree form ID
 
   if (state.succeeded) {
     return (
@@ -21,20 +21,23 @@ export default function ContactForm() {
     <form
       onSubmit={handleSubmit}
       className="rounded-3xl border border-slate-200 dark:border-slate-800 p-6 grid gap-4 bg-white/70 dark:bg-slate-900/40 backdrop-blur-sm"
-      aria-describedby="contact-note"
+      aria-labelledby="contact-title"
     >
       {/* spam honeypot */}
       <input type="text" name="_gotcha" className="hidden" tabIndex={-1} autoComplete="off" aria-hidden="true" />
       {/* optional subject to tag submissions */}
       <input type="hidden" name="subject" value="New inquiry from codebychloe.com" />
-
+      <h2 id="contact-title" className="text-2xl font-bold text-white mb-4">Contact Chloe</h2>
       <div>
-        <label className="block text-sm font-medium mb-1" htmlFor="name">Name</label>
+        <label className="block text-sm font-medium mb-1" htmlFor="name">
+          Name<span aria-hidden="true" className="text-pink-400">*</span>
+        </label>
         <input
           id="name"
           name="name"
           type="text"
           required
+          aria-required="true"
           maxLength={60}
           placeholder="Your name"
           className="w-full rounded-lg border border-rose-200 dark:border-slate-700 bg-white dark:bg-slate-900 px-3 py-2"
@@ -42,12 +45,15 @@ export default function ContactForm() {
       </div>
 
       <div>
-        <label className="block text-sm font-medium mb-1" htmlFor="email">Email</label>
+        <label className="block text-sm font-medium mb-1" htmlFor="email">
+          Email<span aria-hidden="true" className="text-pink-400">*</span>
+        </label>
         <input
           id="email"
           name="email"
           type="email"
           required
+          aria-required="true"
           maxLength={100}
           placeholder="your.email@company.com"
           className="w-full rounded-lg border border-rose-200 dark:border-slate-700 bg-white dark:bg-slate-900 px-3 py-2"
@@ -56,12 +62,15 @@ export default function ContactForm() {
       </div>
 
       <div>
-        <label className="block text-sm font-medium mb-1" htmlFor="message">Message</label>
+        <label className="block text-sm font-medium mb-1" htmlFor="message">
+          Message<span aria-hidden="true" className="text-pink-400">*</span>
+        </label>
         <textarea
           id="message"
           name="message"
           rows={4}
           required
+          aria-required="true"
           maxLength={1000}
           placeholder="Tell me about your project, timeline, or questions about my work..."
           className="w-full rounded-lg border border-rose-200 dark:border-slate-700 bg-white dark:bg-slate-900 px-3 py-2"
