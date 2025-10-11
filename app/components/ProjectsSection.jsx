@@ -1,4 +1,5 @@
 // ProjectsSection.jsx - Updated image paths
+'use client';
 import React, { useState } from 'react';
 import ProjectCard from './ProjectCard';
 import ProjectModal from './ProjectModal';

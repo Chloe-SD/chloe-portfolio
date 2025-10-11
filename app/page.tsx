@@ -8,7 +8,6 @@ import { motion, useReducedMotion } from 'framer-motion';
 import SkillsSection from './components/SkillsSection';
 import ServicesSection from './components/ServicesSection';
 import AboutSection from './components/AboutSection';
-import { ChevronDown } from 'lucide-react';
 
 export default function Home() {
   const prefersReducedMotion = useReducedMotion();

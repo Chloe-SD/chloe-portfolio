@@ -2,6 +2,7 @@
 import React, { useState, useRef, useEffect } from 'react';
 import Image from 'next/image';
 import { X, ChevronLeft, ChevronRight, Github, ExternalLink } from 'lucide-react';
+import { useFocusTrap } from '../utils/useFocusTrap'; // Custom hook for focus trapping 
 
 const ProjectModal = ({ project, isOpen, onClose }) => {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
@@ -29,6 +30,21 @@ const ProjectModal = ({ project, isOpen, onClose }) => {
       document.removeEventListener("keydown", handleClickOutside);
     };
   }, [isOpen, onClose]);
+
+  // Prevent background scrolling when modal is open
+  useEffect(() => {
+    if (isOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+    }
+    return () => {
+      document.body.style.overflow = '';
+    };
+  }, [isOpen]);
+  
+  // Focus trap for accessibility
+  useFocusTrap(modalContentRef, isOpen);
   
   if (!isOpen) return null;
   
@@ -56,6 +72,11 @@ const ProjectModal = ({ project, isOpen, onClose }) => {
     <div className="fixed inset-0 bg-black bg-opacity-80 flex items-center justify-center z-50 p-4">
       <div 
         ref={modalContentRef}
+        role='dialog'
+        aria-modal='true'
+        aria-labelledby='modal-title'
+        aria-describedby='modal-description'
+        tabIndex={-1}
         className="bg-slate-900 border-2 border-fuchsia-200 shadow-lg shadow-purple-800 
                  rounded-md w-full max-w-4xl max-h-[90vh] overflow-y-auto relative"
       >
@@ -88,6 +109,7 @@ const ProjectModal = ({ project, isOpen, onClose }) => {
               <>
                 <button 
                   onClick={prevImage}
+                  aria-label='Previous image'
                   className="absolute left-2 top-1/2 transform -translate-y-1/2 
                            bg-black bg-opacity-50 hover:bg-opacity-70 text-white 
                            p-2 rounded-full"
@@ -96,6 +118,7 @@ const ProjectModal = ({ project, isOpen, onClose }) => {
                 </button>
                 <button 
                   onClick={nextImage}
+                  aria-label='Next image'
                   className="absolute right-2 top-1/2 transform -translate-y-1/2 
                            bg-black bg-opacity-50 hover:bg-opacity-70 text-white 
                            p-2 rounded-full"
@@ -110,6 +133,8 @@ const ProjectModal = ({ project, isOpen, onClose }) => {
                     <button
                       key={i}
                       onClick={() => setCurrentImageIndex(i)}
+                      aria-hidden="true"
+                      tabIndex={-1}
                       className={`w-2 h-2 rounded-full ${
                         i === currentImageIndex ? 'bg-white' : 'bg-gray-500'
                       }`}
@@ -124,8 +149,8 @@ const ProjectModal = ({ project, isOpen, onClose }) => {
         {/* Content */}
         <div className="p-6">
           <div className="mb-6">
-            <h2 className="text-2xl font-bold text-white">{title}</h2>
-            <p className="text-pink-300">{subtitle}</p>
+            <h2 id="modal-title" className="text-2xl font-bold text-white">{title}</h2>
+            <p id="modal-desc" className="text-pink-300">{subtitle}</p>
           </div>
           
           <p className="text-gray-200 mb-6">{description}</p>
@@ -196,3 +221,4 @@ const ProjectModal = ({ project, isOpen, onClose }) => {
 };
 
 export default ProjectModal;
+
