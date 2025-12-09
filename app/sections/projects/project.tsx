@@ -1,40 +1,53 @@
-// ProjectsSection.jsx - Updated image paths
-'use client';
-import React, { useState } from 'react';
-import ProjectCard from './ProjectCard';
-import ProjectModal from './ProjectModal';
 
+// PROJECT TYPE DEFINITION
+export type Project = {
+  id: string;
+  title: string;
+  subtitle: string;
+  description: string;
+  thumbnail: StaticImageData;
+  images: StaticImageData[];
+  tags: string[];
+  techStack: string[];
+  challenges: string;
+  lessons: string;
+  githubUrl?: string;
+  liveUrl?: string;
+};
+
+
+// PHOTO IMPORTS
 // meetMoment images
-import meetWebReq from '../../public/meetMoment/meetWebReq.png';
-import meetCreateNew from '../../public/meetMoment/MeetCreateNew.png';
-import meetCommonAvail from '../../public/meetMoment/MeetCommonAvail.png';
+import meetWebReq from '../../../public/meetMoment/meetWebReq.png';
+import meetCreateNew from '../../../public/meetMoment/MeetCreateNew.png';
+import meetCommonAvail from '../../../public/meetMoment/MeetCommonAvail.png';
 
 // quantumDice images
-import qdPoster from '../../public/quantumDice/qdPoster.png';
-import qdNat20 from '../../public/quantumDice/qdNat20.png';
-import qdAbout from '../../public/quantumDice/qdAbout.png';
-import qdAbout2 from '../../public/quantumDice/qdAbout2.png';
-import qdProbability from '../../public/quantumDice/qdProbability.png';
+import qdPoster from '../../../public/quantumDice/qdPoster.png';
+import qdNat20 from '../../../public/quantumDice/qdNat20.png';
+import qdAbout from '../../../public/quantumDice/qdAbout.png';
+import qdAbout2 from '../../../public/quantumDice/qdAbout2.png';
+import qdProbability from '../../../public/quantumDice/qdProbability.png';
 
 //astute accounting images
-import aa1 from '../../public/astuteAccounting/aa1.png';
-import aa2 from '../../public/astuteAccounting/aa2.png';
-import aa3 from '../../public/astuteAccounting/aa3.png';
-import aa4 from '../../public/astuteAccounting/aa4.png';
-import aa5 from '../../public/astuteAccounting/aa5.png';
-import aa6 from '../../public/astuteAccounting/aa6.png';
-import aa7 from '../../public/astuteAccounting/aa7.png';
+import aa1 from '../../../public/astuteAccounting/aa1.png';
+import aa2 from '../../../public/astuteAccounting/aa2.png';
+import aa3 from '../../../public/astuteAccounting/aa3.png';
+import aa4 from '../../../public/astuteAccounting/aa4.png';
+import aa5 from '../../../public/astuteAccounting/aa5.png';
+import aa6 from '../../../public/astuteAccounting/aa6.png';
+import aa7 from '../../../public/astuteAccounting/aa7.png';
 
 //buildCompass images
-import bc_documentation from '../../public/buildCompass/bc_documentation.png';
-import bc_materialDatabase from '../../public/buildCompass/bc_materialDatabase.png';
-import bc_pdf_material from '../../public/buildCompass/bc_pdf_material.png';
-import bc_pdf_summary from '../../public/buildCompass/bc_pdf_summary.png';
-import bc_reportBuilding from '../../public/buildCompass/bc_reportBuilding.png';
-import bc_reportSetup from '../../public/buildCompass/bc_reportSetup.png';
+import bc_documentation from '../../../public/buildCompass/bc_documentation.png';
+import bc_materialDatabase from '../../../public/buildCompass/bc_materialDatabase.png';
+import bc_pdf_material from '../../../public/buildCompass/bc_pdf_material.png';
+import bc_pdf_summary from '../../../public/buildCompass/bc_pdf_summary.png';
+import bc_reportBuilding from '../../../public/buildCompass/bc_reportBuilding.png';
+import bc_reportSetup from '../../../public/buildCompass/bc_reportSetup.png';
+import { StaticImageData } from 'next/image';
 
-
-const projectsData = [
+export const projectsData = [
   {
     id: 'buildCompass',
     title: 'Build-Compass',
@@ -100,45 +113,3 @@ const projectsData = [
     liveUrl: 'https://quantum-dice-simulator.streamlit.app/'
   },
 ];
-
-const ProjectsSection = () => {
-  const [selectedProject, setSelectedProject] = useState(null);
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  
-  const openModal = (project) => {
-    setSelectedProject(project);
-    setIsModalOpen(true);
-  };
-  
-  const closeModal = () => {
-    setIsModalOpen(false);
-  };
-  
-  return (
-    <div className="w-full">
-      {/* <h2 className="text-center text-2xl md:text-3xl font-bold mb-8">My Projects</h2> */}
-      
-      {/* Projects Grid */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        {projectsData.map((project) => (
-          <ProjectCard 
-            key={project.id} 
-            project={project} 
-            openModal={openModal} 
-          />
-        ))}
-      </div>
-      
-      {/* Modal */}
-      {selectedProject && (
-        <ProjectModal 
-          project={selectedProject} 
-          isOpen={isModalOpen} 
-          onClose={closeModal} 
-        />
-      )}
-    </div>
-  );
-};
-
-export default ProjectsSection;

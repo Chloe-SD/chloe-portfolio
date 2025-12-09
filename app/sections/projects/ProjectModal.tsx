@@ -1,21 +1,36 @@
 // ProjectModal.jsx - With outside click to close
-import React, { useState, useRef, useEffect } from 'react';
-import Image from 'next/image';
-import { X, ChevronLeft, ChevronRight, Github, ExternalLink } from 'lucide-react';
-import { useFocusTrap } from '../utils/useFocusTrap'; // Custom hook for focus trapping 
+import React, { useState, useRef, useEffect } from "react";
+import Image from "next/image";
+import {
+  X,
+  ChevronLeft,
+  ChevronRight,
+  Github,
+  ExternalLink
+} from "lucide-react";
+import { useFocusTrap } from "../../utils/useFocusTrap"; // Custom hook for focus trapping
+import { Project } from "./project";
 
-const ProjectModal = ({ project, isOpen, onClose }) => {
+type ProjectModalProps = {
+  project: Project;
+  isOpen: boolean;
+  onClose: () => void;
+};
+const ProjectModal = ({ project, isOpen, onClose }: ProjectModalProps) => {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
-  const modalContentRef = useRef(null);
-  
+  const modalContentRef = useRef<HTMLDivElement>(null);
+
   // Handle outside clicks
   useEffect(() => {
-    function handleClickOutside(event) {
-      if (modalContentRef.current && !modalContentRef.current.contains(event.target)) {
+    function handleClickOutside(event: MouseEvent) {
+      if (
+        modalContentRef.current &&
+        !modalContentRef.current.contains(event.target as Node)
+      ) {
         onClose();
       }
     }
-    
+
     // Only add listener if the modal is open
     if (isOpen) {
       document.addEventListener("mousedown", handleClickOutside);
@@ -24,65 +39,65 @@ const ProjectModal = ({ project, isOpen, onClose }) => {
         if (e.key === "Escape") onClose();
       });
     }
-    
+
     return () => {
       document.removeEventListener("mousedown", handleClickOutside);
-      document.removeEventListener("keydown", handleClickOutside);
+      //document.removeEventListener("keydown", handleClickOutside);
     };
   }, [isOpen, onClose]);
 
   // Prevent background scrolling when modal is open
   useEffect(() => {
     if (isOpen) {
-      document.body.style.overflow = 'hidden';
+      document.body.style.overflow = "hidden";
     } else {
-      document.body.style.overflow = '';
+      document.body.style.overflow = "";
     }
     return () => {
-      document.body.style.overflow = '';
+      document.body.style.overflow = "";
     };
   }, [isOpen]);
-  
+
   // Focus trap for accessibility
   useFocusTrap(modalContentRef, isOpen);
-  
+
   if (!isOpen) return null;
-  
-  const { 
-    title, 
-    subtitle, 
-    description, 
-    images, 
-    techStack, 
-    challenges, 
-    lessons, 
-    githubUrl, 
-    liveUrl 
+
+  const {
+    title,
+    subtitle,
+    description,
+    images,
+    techStack,
+    challenges,
+    lessons,
+    githubUrl,
+    liveUrl
   } = project;
-  
+
   const nextImage = () => {
     setCurrentImageIndex((prev) => (prev + 1) % images.length);
   };
-  
+
   const prevImage = () => {
     setCurrentImageIndex((prev) => (prev - 1 + images.length) % images.length);
   };
 
   return (
     <div className="fixed inset-0 bg-black bg-opacity-80 flex items-center justify-center z-50 p-4">
-      <div 
+      <div
         ref={modalContentRef}
-        role='dialog'
-        aria-modal='true'
-        aria-labelledby='modal-title'
-        aria-describedby='modal-description'
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="modal-title"
+        aria-describedby="modal-description"
         tabIndex={-1}
         className="bg-slate-900 border-2 border-fuchsia-200 shadow-lg shadow-purple-800 
                  rounded-md w-full max-w-4xl max-h-[90vh] overflow-y-auto relative"
       >
         {/* Close button */}
-        <button 
-          onClick={onClose} 
+        <button
+          onClick={onClose}
           className="absolute top-4 right-4 bg-slate-800 hover:bg-slate-700 
                    p-2 rounded-full text-white z-10 transition-all hover:text-pink-600
                    flex items-center justify-center"
@@ -90,12 +105,12 @@ const ProjectModal = ({ project, isOpen, onClose }) => {
         >
           <X size={20} />
         </button>
-        
+
         {/* Image gallery */}
         {images && images.length > 0 && (
           <div className="relative w-full">
             <div className="aspect-video relative">
-              <Image 
+              <Image
                 src={images[currentImageIndex]}
                 alt={`${title} screenshot ${currentImageIndex + 1}`}
                 fill
@@ -104,31 +119,33 @@ const ProjectModal = ({ project, isOpen, onClose }) => {
                 priority
               />
             </div>
-            
+
             {images.length > 1 && (
               <>
-                <button 
+                <button
                   onClick={prevImage}
-                  aria-label='Previous image'
+                  aria-label="Previous image"
                   className="absolute left-2 top-1/2 transform -translate-y-1/2 
                            bg-black bg-opacity-50 hover:bg-opacity-70 text-white 
                            p-2 rounded-full"
                 >
                   <ChevronLeft size={24} />
                 </button>
-                <button 
+                <button
                   onClick={nextImage}
-                  aria-label='Next image'
+                  aria-label="Next image"
                   className="absolute right-2 top-1/2 transform -translate-y-1/2 
                            bg-black bg-opacity-50 hover:bg-opacity-70 text-white 
                            p-2 rounded-full"
                 >
                   <ChevronRight size={24} />
                 </button>
-                
+
                 {/* Image indicator */}
-                <div className="absolute bottom-2 left-1/2 transform -translate-x-1/2 
-                              flex space-x-2">
+                <div
+                  className="absolute bottom-2 left-1/2 transform -translate-x-1/2 
+                              flex space-x-2"
+                >
                   {images.map((_, i) => (
                     <button
                       key={i}
@@ -136,7 +153,7 @@ const ProjectModal = ({ project, isOpen, onClose }) => {
                       aria-hidden="true"
                       tabIndex={-1}
                       className={`w-2 h-2 rounded-full ${
-                        i === currentImageIndex ? 'bg-white' : 'bg-gray-500'
+                        i === currentImageIndex ? "bg-white" : "bg-gray-500"
                       }`}
                     />
                   ))}
@@ -145,24 +162,30 @@ const ProjectModal = ({ project, isOpen, onClose }) => {
             )}
           </div>
         )}
-        
+
         {/* Content */}
         <div className="p-6">
           <div className="mb-6">
-            <h2 id="modal-title" className="text-2xl font-bold text-white">{title}</h2>
-            <p id="modal-desc" className="text-pink-300">{subtitle}</p>
+            <h2 id="modal-title" className="text-2xl font-bold text-white">
+              {title}
+            </h2>
+            <p id="modal-desc" className="text-pink-300">
+              {subtitle}
+            </p>
           </div>
-          
+
           <p className="text-gray-200 mb-6">{description}</p>
-          
+
           {/* Tech Stack */}
           {techStack && techStack.length > 0 && (
             <div className="mb-6">
-              <h3 className="text-lg font-semibold text-white mb-2">Technologies Used</h3>
+              <h3 className="text-lg font-semibold text-white mb-2">
+                Technologies Used
+              </h3>
               <div className="flex flex-wrap gap-2">
                 {techStack.map((tech, i) => (
-                  <span 
-                    key={i} 
+                  <span
+                    key={i}
                     className="bg-slate-800 text-gray-200 px-3 py-1 rounded-md"
                   >
                     {tech}
@@ -171,29 +194,33 @@ const ProjectModal = ({ project, isOpen, onClose }) => {
               </div>
             </div>
           )}
-          
+
           {/* Challenges */}
           {challenges && (
             <div className="mb-6">
-              <h3 className="text-lg font-semibold text-white mb-2">Challenges</h3>
+              <h3 className="text-lg font-semibold text-white mb-2">
+                Challenges
+              </h3>
               <p className="text-gray-300">{challenges}</p>
             </div>
           )}
-          
+
           {/* Lessons Learned */}
           {lessons && (
             <div className="mb-6">
-              <h3 className="text-lg font-semibold text-white mb-2">What I Learned</h3>
+              <h3 className="text-lg font-semibold text-white mb-2">
+                What I Learned
+              </h3>
               <p className="text-gray-300">{lessons}</p>
             </div>
           )}
-          
+
           {/* Links */}
           <div className="flex flex-wrap gap-4 mt-8">
             {githubUrl && (
-              <a 
-                href={githubUrl} 
-                target="_blank" 
+              <a
+                href={githubUrl}
+                target="_blank"
                 rel="noopener noreferrer"
                 className="flex items-center gap-2 bg-slate-800 hover:bg-slate-700 
                          text-white px-4 py-2 rounded-md transition-colors"
@@ -202,9 +229,9 @@ const ProjectModal = ({ project, isOpen, onClose }) => {
               </a>
             )}
             {liveUrl && (
-              <a 
-                href={liveUrl} 
-                target="_blank" 
+              <a
+                href={liveUrl}
+                target="_blank"
                 rel="noopener noreferrer"
                 className="flex items-center gap-2 bg-pink-500 hover:bg-pink-600 
                          text-white px-4 py-2 rounded-md transition-colors
@@ -221,4 +248,3 @@ const ProjectModal = ({ project, isOpen, onClose }) => {
 };
 
 export default ProjectModal;
-

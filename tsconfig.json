@@ -34,8 +34,8 @@
     "**/*.tsx",
     ".next/types/**/*.ts",
     "app/components/skillpool.tsx",
-    "app/Contact.tsx"
-, "app/utils/useFocusTrap.js"  ],
+    "app/sections/contact/Contact.tsx"
+, "app/utils/useFocusTrap.js", "app/sections/projects/ProjectModal.tsx"  ],
   "exclude": [
     "node_modules"
   ]
