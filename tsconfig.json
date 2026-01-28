@@ -14,7 +14,7 @@
     "moduleResolution": "bundler",
     "resolveJsonModule": true,
     "isolatedModules": true,
-    "jsx": "preserve",
+    "jsx": "react-jsx",
     "incremental": true,
     "plugins": [
       {
@@ -34,8 +34,11 @@
     "**/*.tsx",
     ".next/types/**/*.ts",
     "app/components/skillpool.tsx",
-    "app/sections/contact/Contact.tsx"
-, "app/utils/useFocusTrap.js", "app/sections/projects/ProjectModal.tsx"  ],
+    "app/sections/contact/Contact.tsx",
+    "app/utils/useFocusTrap.js",
+    "app/sections/projects/ProjectModal.tsx",
+    ".next/dev/types/**/*.ts"
+  ],
   "exclude": [
     "node_modules"
   ]
