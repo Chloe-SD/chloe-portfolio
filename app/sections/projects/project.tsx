@@ -94,7 +94,7 @@ export const projectsData = [
     challenges: 'Architecting cross-platform data synchronization for complex scheduling algorithms while maintaining responsive performance across web and mobile platforms.',
     lessons: 'Mastered cross-platform architecture patterns, real-time data management, and building production-ready applications that handle concurrent users and complex state synchronization.',
     githubUrl: 'https://github.com/Chloe-SD/MeetMoment',
-    liveUrl: 'https://meetmoment-webapp.vercel.app/'
+    //liveUrl: 'https://meetmoment-webapp.vercel.app/'
   },
   {
     id: 'quantumDice',
