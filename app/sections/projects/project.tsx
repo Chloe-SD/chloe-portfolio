@@ -46,10 +46,33 @@ import bc_pdf_summary from '../../../public/buildCompass/bc_pdf_summary.webp';
 import bc_reportBuilding from '../../../public/buildCompass/bc_reportBuilding.webp';
 import bc_reportSetup from '../../../public/buildCompass/bc_reportSetup.webp';
 
+//Structural wall testing rig photos
+import wallRigChloe from '../../../public/wallTestingRig/wallRigChloe.webp';
+import wallRigControlStation1 from '../../../public/wallTestingRig/wallRigControlStation1.webp';
+import wallRigFlow1 from '../../../public/wallTestingRig/wallRigFlow1.webp';
+import wallRigUi1 from '../../../public/wallTestingRig/wallRigUI1.webp';
+import wallRigUi2 from '../../../public/wallTestingRig/wallRigUI2.webp';
+import wallRigUI3 from '../../../public/wallTestingRig/wallRigUI3.webp';
+import wallRigUI4 from '../../../public/wallTestingRig/wallRigUI4.webp';
+
 
 import { StaticImageData } from 'next/image';
 
 export const projectsData = [
+  {
+    id: 'structuralWallRig',
+    title: 'Structural Wall Testing Rig',
+    subtitle: 'Industrial Control System • Professional Engineering Software',
+    description: 'Developed as part of a paid software development role with the SAIT Green Building Technology Access Centre, this industrial control and data acquisition system is actively used in structural wall testing research. Built a Node-RED + JavaScript interface running on Raspberry Pi (Debian) to coordinate hydraulic systems, industrial sensors, automated testing workflows, and real-time monitoring for long-duration structural experiments.',
+    thumbnail: wallRigChloe, 
+    images: [
+      wallRigChloe, wallRigControlStation1, wallRigFlow1, wallRigUi1, wallRigUi2, wallRigUI3, wallRigUI4
+    ],
+    tags: ['Industrial Automation', 'Production Systems', 'Hardware Integration'],  
+    techStack: ['JavaScript', 'Linux', 'Raspberry Pi', 'Node-RED', 'CAN Bus', 'Industrial Sensors'],
+    challenges: 'Designing reliable control workflows for real-world hardware where software stability directly impacts expensive research equipment and long-running experiments. Integration hydraulic controls, load cells, potentiometers, and safety-aware automation into a maintainable operator interface used in active research',
+    lessons: 'Strengthened my ability to bridge software and physical systems in a professional engineering environment. Learned to collaborate across disciplines with electrical engineers, hydraulics specialists, and researchers while building software that must remain dependable during extended real-world testing operations.',
+  },
   {
     id: 'buildCompass',
     title: 'Build-Compass',
