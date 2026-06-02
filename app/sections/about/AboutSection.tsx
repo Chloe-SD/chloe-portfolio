@@ -16,11 +16,11 @@ type Hobby = {
 };
 
 const HOBBIES: Hobby[] = [
-  { key: "photography", label: "Photography", img: "/images/about/photography.png", alt: "Chloe taking a photo out on a hike.", emoji: "📷" },
-  { key: "default", label: "Default", img: "/images/about/default.png", alt: "Chloe portrait photo.", emoji: "🙂" },
-  { key: "blacksmithing", label: "Blacksmithing", img: "/images/about/blacksmithing.png", alt: "Chloe at the forge, working hot steel.", emoji: "⚒️" },
-  { key: "woodworking", label: "Woodworking", img: "/images/about/woodworking.png", alt: "Chloe turning a bowl on the wood lathe.", emoji: "🪵" },
-  { key: "hiking", label: "Hiking", img: "/images/about/hiking.png", alt: "Chloe hiking with mountains and waterfall in the background.", emoji: "🥾" },
+  { key: "photography", label: "Photography", img: "/images/about/photography.webp", alt: "Chloe taking a photo out on a hike.", emoji: "📷" },
+  { key: "default", label: "Default", img: "/images/about/default.webp", alt: "Chloe portrait photo.", emoji: "🙂" },
+  { key: "blacksmithing", label: "Blacksmithing", img: "/images/about/blacksmithing.webp", alt: "Chloe at the forge, working hot steel.", emoji: "⚒️" },
+  { key: "woodworking", label: "Woodworking", img: "/images/about/woodworking.webp", alt: "Chloe turning a bowl on the wood lathe.", emoji: "🪵" },
+  { key: "hiking", label: "Hiking", img: "/images/about/hiking.webp", alt: "Chloe hiking with mountains and waterfall in the background.", emoji: "🥾" },
 ];
 
 const hobbyOrder: HobbyKey[] = ["default", "blacksmithing", "woodworking", "hiking", "photography"];

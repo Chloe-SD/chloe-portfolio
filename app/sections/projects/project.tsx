@@ -18,33 +18,35 @@ export type Project = {
 
 // PHOTO IMPORTS
 // meetMoment images
-import meetWebReq from '../../../public/meetMoment/meetWebReq.png';
-import meetCreateNew from '../../../public/meetMoment/MeetCreateNew.png';
-import meetCommonAvail from '../../../public/meetMoment/MeetCommonAvail.png';
+import meetWebReq from '../../../public/meetMoment/meetWebReq.webp';
+import meetCreateNew from '../../../public/meetMoment/MeetCreateNew.webp';
+import meetCommonAvail from '../../../public/meetMoment/MeetCommonAvail.webp';
 
 // quantumDice images
-import qdPoster from '../../../public/quantumDice/qdPoster.png';
-import qdNat20 from '../../../public/quantumDice/qdNat20.png';
-import qdAbout from '../../../public/quantumDice/qdAbout.png';
-import qdAbout2 from '../../../public/quantumDice/qdAbout2.png';
-import qdProbability from '../../../public/quantumDice/qdProbability.png';
+import qdPoster from '../../../public/quantumDice/qdPoster.webp';
+import qdNat20 from '../../../public/quantumDice/qdNat20.webp';
+import qdAbout from '../../../public/quantumDice/qdAbout.webp';
+import qdAbout2 from '../../../public/quantumDice/qdAbout2.webp';
+import qdProbability from '../../../public/quantumDice/qdProbability.webp';
 
 //astute accounting images
-import aa1 from '../../../public/astuteAccounting/aa1.png';
-import aa2 from '../../../public/astuteAccounting/aa2.png';
-import aa3 from '../../../public/astuteAccounting/aa3.png';
-import aa4 from '../../../public/astuteAccounting/aa4.png';
-import aa5 from '../../../public/astuteAccounting/aa5.png';
-import aa6 from '../../../public/astuteAccounting/aa6.png';
-import aa7 from '../../../public/astuteAccounting/aa7.png';
+import aa1 from '../../../public/astuteAccounting/aa1.webp';
+import aa2 from '../../../public/astuteAccounting/aa2.webp';
+import aa3 from '../../../public/astuteAccounting/aa3.webp';
+import aa4 from '../../../public/astuteAccounting/aa4.webp';
+import aa5 from '../../../public/astuteAccounting/aa5.webp';
+import aa6 from '../../../public/astuteAccounting/aa6.webp';
+import aa7 from '../../../public/astuteAccounting/aa7.webp';
 
 //buildCompass images
-import bc_documentation from '../../../public/buildCompass/bc_documentation.png';
-import bc_materialDatabase from '../../../public/buildCompass/bc_materialDatabase.png';
-import bc_pdf_material from '../../../public/buildCompass/bc_pdf_material.png';
-import bc_pdf_summary from '../../../public/buildCompass/bc_pdf_summary.png';
-import bc_reportBuilding from '../../../public/buildCompass/bc_reportBuilding.png';
-import bc_reportSetup from '../../../public/buildCompass/bc_reportSetup.png';
+import bc_documentation from '../../../public/buildCompass/bc_documentation.webp';
+import bc_materialDatabase from '../../../public/buildCompass/bc_materialDatabase.webp';
+import bc_pdf_material from '../../../public/buildCompass/bc_pdf_material.webp';
+import bc_pdf_summary from '../../../public/buildCompass/bc_pdf_summary.webp';
+import bc_reportBuilding from '../../../public/buildCompass/bc_reportBuilding.webp';
+import bc_reportSetup from '../../../public/buildCompass/bc_reportSetup.webp';
+
+
 import { StaticImageData } from 'next/image';
 
 export const projectsData = [
